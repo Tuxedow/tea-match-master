@@ -9,269 +9,223 @@
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
         :root {
-            /* 国风霸王茶姬风格 - 朱砂红主题 */
-            --zhusha-red: #C23A3A;
-            --zhusha-dark: #8B2525;
-            --zhusha-light: #E86868;
-            --mi-bai: #FDF8F3;
-            --mi-bai-dark: #F5EBE3;
-            --tea-green: #7BAO8C;
-            --tea-green-light: #A8CDAB;
-            --tea-green-pale: #E8F2EA;
-            --gold: #D4AF37;
-            --gold-light: #F0D78C;
-            --gold-glow: rgba(212, 175, 55, 0.4);
-            --text-dark: #2C1810;
-            --text: #3D2822;
-            --text-secondary: #6B5347;
-            --shadow: 0 4px 20px rgba(194, 58, 58, 0.15);
-            --shadow-hover: 0 8px 30px rgba(194, 58, 58, 0.25);
-            --shadow-gold: 0 4px 20px var(--gold-glow);
+            /* Instagram风格配色 */
+            --insta-red: #FF3B30;
+            --insta-yellow: #FFCC00;
+            --insta-blue: #007AFF;
+            --insta-pink: #FF2D55;
+            --insta-orange: #FF9500;
+            --insta-green: #34C759;
+            --dark-bg: #0A0A0A;
+            --dark-card: #1A1A1A;
+            --dark-card-hover: #252525;
+            --white: #FFFFFF;
+            --text-gray: #8E8E93;
+            --text-light: #C7C7CC;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.5);
             --radius: 16px;
             --radius-lg: 24px;
         }
 
-        /* 朱砂红大面积背景 */
+        /* 纯黑背景 */
         body {
-            background: linear-gradient(165deg,
-                var(--zhusha-red) 0%,
-                var(--zhusha-dark) 40%,
-                var(--zhusha-red) 60%,
-                var(--zhusha-dark) 100%);
+            background: var(--dark-bg);
             min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Serif SC", serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif;
             position: relative;
-            overflow-x: hidden;
         }
 
-        /* 背景装饰 - 东方纹样 */
+        /* 背景装饰 - 渐变光晕 */
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
             background:
-                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(123, 170, 140, 0.1) 0%, transparent 35%),
-                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+                radial-gradient(circle at 30% 20%, rgba(255, 59, 48, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 70% 80%, rgba(0, 122, 255, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 50% 50%, rgba(255, 204, 0, 0.08) 0%, transparent 35%);
             pointer-events: none;
             z-index: 0;
         }
 
         /* 头部 */
         header {
-            background: linear-gradient(180deg, rgba(253, 248, 243, 0.95) 0%, rgba(245, 235, 227, 0.9) 100%);
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid var(--gold);
-            padding: 24px 32px;
+            background: var(--dark-card);
+            border-bottom: 1px solid #2C2C2E;
+            padding: 16px 20px;
             text-align: center;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: var(--gold);
-            border-radius: 2px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
         }
 
         header h1 {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 8px;
-            color: var(--zhusha-dark);
-            text-transform: uppercase;
-            text-shadow: 1px 1px 2px rgba(212, 175, 55, 0.3);
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, var(--insta-red), var(--insta-orange), var(--insta-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         /* 主容器 */
         .container {
             position: relative;
             z-index: 1;
-            padding: 40px 20px 80px;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 30px 16px 100px;
+        }
+
+        /* 卡片容器 */
+        .card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
         }
 
         /* 进度条 */
         .progress {
-            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 30px;
         }
 
         .progress-dot {
-            background: rgba(255, 255, 255, 0.3);
+            width: 40px;
             height: 6px;
+            background: #3A3A3C;
+            border-radius: 3px;
+            transition: all 0.3s ease;
         }
 
         .progress-dot.active {
-            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
-            box-shadow: var(--shadow-gold);
+            background: linear-gradient(90deg, var(--insta-red), var(--insta-orange));
+            width: 50px;
+            box-shadow: 0 2px 10px rgba(255, 59, 48, 0.5);
         }
 
         /* 步骤标题 */
         .step-number {
-            color: var(--gold);
-            font-weight: 700;
+            color: var(--insta-red);
+            font-weight: 800;
             letter-spacing: 3px;
             font-size: 14px;
+            margin-bottom: 8px;
         }
 
         .step-title {
-            color: var(--mi-bai);
-            font-weight: 600;
-            font-size: 28px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            color: var(--dark-bg);
+            font-weight: 800;
+            font-size: 26px;
+            margin-bottom: 24px;
         }
 
         /* 选项卡片 */
         .options {
-            gap: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
         }
 
         .option {
-            background: linear-gradient(135deg, var(--mi-bai) 0%, var(--mi-bai-dark) 100%);
-            border: 2px solid transparent;
-            border-radius: var(--radius-lg);
-            padding: 22px 32px;
+            background: var(--white);
+            border: 2px solid #E5E5EA;
+            border-radius: var(--radius);
+            padding: 18px 24px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 18px;
-            font-weight: 500;
-            color: var(--text);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--dark-bg);
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .option::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg,
-                transparent,
-                rgba(212, 175, 55, 0.2),
-                transparent);
-            transition: left 0.6s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
         .option:hover {
-            border-color: var(--gold);
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover), var(--shadow-gold);
-            background: linear-gradient(135deg, var(--mi-bai) 0%, #FFF5E6 100%);
-        }
-
-        .option:hover::before {
-            left: 100%;
+            border-color: var(--insta-blue);
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.3);
+            background: #F2F2F7;
         }
 
         .option.selected {
-            background: linear-gradient(135deg, var(--zhusha-red) 0%, var(--zhusha-dark) 100%);
-            border-color: var(--gold);
-            border-width: 3px;
-            color: var(--mi-bai);
-            font-weight: 700;
-            box-shadow: var(--shadow-hover), 0 0 30px var(--gold-glow);
-            transform: translateY(-3px) scale(1.02);
+            background: linear-gradient(135deg, var(--insta-red) 0%, var(--insta-pink) 100%);
+            border-color: var(--insta-red);
+            color: var(--white);
+            font-weight: 800;
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(255, 59, 48, 0.4);
         }
 
         /* 按钮 */
+        .actions {
+            display: flex;
+            gap: 14px;
+            margin-top: 30px;
+        }
+
         .btn {
-            padding: 18px 36px;
-            font-size: 18px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
+            flex: 1;
+            padding: 18px 28px;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-            color: var(--zhusha-dark);
-            box-shadow: var(--shadow-gold), 0 4px 15px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(135deg, var(--insta-blue) 0%, #0A84FF 100%);
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 122, 255, 0.5);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.15);
-            border: 2px solid var(--gold);
-            color: var(--mi-bai);
+            background: var(--dark-card);
+            color: var(--white);
+            border: 2px solid #3A3A3C;
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.25);
+            background: var(--dark-card-hover);
+            transform: translateY(-2px);
         }
 
         /* 结果区域 */
-        .result-title {
-            color: var(--mi-bai);
-            font-size: 24px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        .result {
+            display: none;
         }
 
-        /* 结果卡片 */
-        .result-card {
-            background: linear-gradient(135deg, var(--mi-bai) 0%, var(--mi-bai-dark) 100%);
-            border-radius: var(--radius-lg);
-            padding: 28px;
-            box-shadow: var(--shadow);
+        .result.show {
+            display: block;
+            animation: slideUp 0.5s ease;
         }
 
-        .result-card:first-child {
-            border: 3px solid var(--gold);
-            background: linear-gradient(135deg, #FFFDFA 0%, var(--mi-bai) 100%);
-            box-shadow: var(--shadow-hover), var(--shadow-gold);
-        }
-
-        .result-rank {
-            color: var(--zhusha-red);
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-
-        .result-brand {
-            color: var(--zhusha-dark);
-            font-size: 26px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--zhusha-red) 0%, var(--gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .result-drinks {
-            color: var(--text);
-            font-size: 16px;
-        }
-
-        .result-reason {
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-
-        /* 步骤动画 */
-        .step {
-            animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes fadeInUp {
+        @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
@@ -279,27 +233,129 @@
             }
         }
 
+        .result-title {
+            color: var(--white);
+            font-size: 24px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 24px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 结果卡片 */
+        .result-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 26px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .result-card:first-child {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFFBF0 100%);
+            border: 3px solid var(--insta-yellow);
+            box-shadow: 0 8px 30px rgba(255, 204, 0, 0.3);
+        }
+
+        .result-rank {
+            color: var(--insta-red);
+            font-weight: 900;
+            letter-spacing: 3px;
+            font-size: 13px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .result-brand {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .result-drinks {
+            font-size: 16px;
+            color: #3A3A3C;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .result-reason {
+            font-size: 15px;
+            color: #8E8E93;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* 步骤动画 */
+        .step {
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 加载动画 */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 60px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #3A3A3C;
+            border-top-color: var(--insta-red);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* 响应式 */
-        @media (max-width: 520px) {
+        @media (max-width: 480px) {
             .container {
-                padding: 30px 16px 60px;
+                padding: 20px 12px 80px;
+            }
+
+            .card {
+                padding: 20px;
+                border-radius: var(--radius);
             }
 
             .step-title {
-                font-size: 24px;
+                font-size: 22px;
             }
 
             .option {
-                padding: 18px 24px;
+                padding: 16px 20px;
                 font-size: 16px;
             }
 
-            .result-card {
-                padding: 22px;
+            .result-brand {
+                font-size: 24px;
             }
 
-            .result-brand {
-                font-size: 22px;
+            .btn {
+                padding: 16px 20px;
+                font-size: 15px;
             }
         }
     </style>
@@ -319,48 +375,36 @@
         </div>
 
         <!-- 步骤1: 性别 -->
-        <div class="step" id="step1">
-            <div class="step-header">
-                <div class="step-number">STEP 1 / 4</div>
-                <div class="step-title">你是哪种生物？</div>
-            </div>
+        <div class="step card" id="step1">
+            <div class="step-number">STEP 1 / 4</div>
+            <div class="step-title">你是哪种生物？</div>
             <div class="options" id="options1"></div>
         </div>
 
         <!-- 步骤2: 年龄 -->
-        <div class="step" id="step2" style="display: none;">
-            <div class="step-header">
-                <div class="step-number">STEP 2 / 4</div>
-                <div class="step-title">你是什么段位？</div>
-            </div>
+        <div class="step card" id="step2" style="display: none;">
+            <div class="step-number">STEP 2 / 4</div>
+            <div class="step-title">你是什么段位？</div>
             <div class="options" id="options2"></div>
         </div>
 
         <!-- 步骤3: 职业 -->
-        <div class="step" id="step3" style="display: none;">
-            <div class="step-header">
-                <div class="step-number">STEP 3 / 4</div>
-                <div class="step-title">你靠什么谋生？</div>
-            </div>
+        <div class="step card" id="step3" style="display: none;">
+            <div class="step-number">STEP 3 / 4</div>
+            <div class="step-title">你靠什么谋生？</div>
             <div class="options" id="options3"></div>
         </div>
 
         <!-- 步骤4: 预算 -->
-        <div class="step" id="step4" style="display: none;">
-            <div class="step-header">
-                <div class="step-number">STEP 4 / 4</div>
-                <div class="step-title">你有多少预算？</div>
-            </div>
+        <div class="step card" id="step4" style="display: none;">
+            <div class="step-number">STEP 4 / 4</div>
+            <div class="step-title">你有多少预算？</div>
             <div class="options" id="options4"></div>
         </div>
 
         <!-- 加载中 -->
         <div class="loading" id="loading">
-            <div class="loading-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <div class="loading-spinner"></div>
         </div>
 
         <!-- 结果 -->
@@ -470,37 +514,28 @@
 
         // 选择选项
         function selectOption(step, element) {
-            // 清除其他选中
             document.querySelectorAll(`#options${step} .option`).forEach(opt => {
                 opt.classList.remove('selected');
             });
-
-            // 选中当前
             element.classList.add('selected');
 
-            // 保存数据
             const keys = ['gender', 'age', 'occupation', 'budget'];
             userData[keys[step - 1]] = element.dataset.value;
 
-            //下一步 自动进入
             setTimeout(() => {
                 if (step < 4) {
                     goToStep(step + 1);
                 } else {
                     showResult();
                 }
-            }, 200);
+            }, 250);
         }
 
         // 进入下一步
         function goToStep(step) {
-            // 隐藏当前步骤
             document.getElementById('step' + (step - 1)).style.display = 'none';
-            // 显示下一步
             document.getElementById('step' + step).style.display = 'block';
-            // 渲染选项
             renderOptions(step);
-            // 更新进度
             updateProgress(step);
         }
 
@@ -518,20 +553,16 @@
 
         // 显示结果
         function showResult() {
-            // 隐藏进度和所有步骤
             document.getElementById('progress').style.display = 'none';
             document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
-
-            // 显示加载
             document.getElementById('loading').classList.add('show');
 
-            // 模拟计算
             setTimeout(() => {
                 const result = calculateResult();
                 renderResult(result);
                 document.getElementById('loading').classList.remove('show');
                 document.getElementById('result').classList.add('show');
-            }, 800);
+            }, 1000);
         }
 
         // 计算结果
@@ -539,8 +570,6 @@
             const genderData = matchData[userData.gender] || matchData['其他'];
             const ageData = genderData[userData.age] || genderData['小登'];
             const budgetData = ageData[userData.budget] || ageData['不差钱'];
-
-            // 返回2-3个推荐
             return budgetData.slice(0, 3);
         }
 
@@ -549,7 +578,7 @@
             const container = document.getElementById('resultCards');
             container.innerHTML = resultBrands.map((brand, index) => {
                 const data = brands[brand] || { drinks: ['经典奶茶'], reason: '适合你的选择' };
-                const rank = index === 0 ? '最佳匹配' : `备选${index}`;
+                const rank = index === 0 ? '🏆 最佳匹配' : `🥈 备选${index}`;
                 return `
                     <div class="result-card">
                         <div class="result-rank">${rank}</div>
@@ -564,13 +593,11 @@
         // 保存图片
         async function saveImage() {
             const result = document.getElementById('result');
-
             try {
                 const canvas = await html2canvas(result, {
-                    backgroundColor: '#FAFAFA',
+                    backgroundColor: '#0A0A0A',
                     scale: 2
                 });
-
                 const link = document.createElement('a');
                 link.download = '你是什么茶.png';
                 link.href = canvas.toDataURL('image/png');
@@ -583,24 +610,15 @@
 
         // 重新开始
         function restart() {
-            // 重置数据
             userData.gender = '';
             userData.age = '';
             userData.occupation = '';
             userData.budget = '';
-
-            // 清除选中状态
-            document.querySelectorAll('.option').forEach(opt => {
-                opt.classList.remove('selected');
-            });
-
-            // 隐藏结果，显示进度和第一步
+            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
             document.getElementById('result').classList.remove('show');
             document.getElementById('progress').style.display = 'flex';
             document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
             document.getElementById('step1').style.display = 'block';
-
-            // 重置进度
             updateProgress(1);
         }
     </script>
