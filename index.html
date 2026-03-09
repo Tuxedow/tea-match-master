@@ -173,25 +173,23 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--insta-blue) 0%, #0A84FF 100%);
-            color: var(--white);
-            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
+            background: #2196F3;
+            color: #FFFFFF;
+            border: none;
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 122, 255, 0.5);
+            background: #1976D2;
         }
 
         .btn-secondary {
-            background: #f0f0f0;
-            color: #333;
-            border: 2px solid #ddd;
+            background: #F5F5F5;
+            color: #333333;
+            border: 1px solid #DDDDDD;
         }
 
         .btn-secondary:hover {
-            background: #e0e0e0;
-            transform: translateY(-2px);
+            background: #EEEEEE;
         }
 
         /* 结果区域 */
@@ -201,83 +199,70 @@
 
         .result.show {
             display: block;
-            animation: slideUp 0.5s ease;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .result-title {
-            color: #2D3436;
+            color: #333333;
             font-size: 24px;
             font-weight: 800;
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         /* 结果卡片容器 */
         .result-wrapper {
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            box-shadow: var(--shadow);
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid #DDDDDD;
         }
 
-        /* 结果卡片 */
+        /* 结果卡片 - 最佳匹配 */
         .result-card {
-            background: #ffffff;
-            border-radius: var(--radius);
-            padding: 20px;
-            margin-bottom: 14px;
-            border: 2px solid #E5E5EA;
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
         }
 
         .result-card:last-child {
             margin-bottom: 0;
         }
 
-        .result-card:first-child {
-            background: linear-gradient(135deg, #FFF8E1 0%, #FFFBF0 100%);
-            border: 3px solid var(--insta-orange);
-            box-shadow: 0 4px 15px rgba(255, 149, 0, 0.2);
+        .result-card.best {
+            background: #FFF8E1;
+            border: 2px solid #FF9800;
+        }
+
+        .result-card.alt {
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
         }
 
         .result-rank {
-            color: var(--insta-red);
+            color: #FF5722;
             font-weight: 900;
-            letter-spacing: 3px;
             font-size: 12px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
+            margin-bottom: 6px;
         }
 
         .result-brand {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 900;
-            color: var(--dark-bg);
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
+            color: #333333;
+            margin-bottom: 6px;
         }
 
         .result-drinks {
-            font-size: 15px;
-            color: #3A3A3C;
+            font-size: 14px;
+            color: #555555;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .result-reason {
-            font-size: 14px;
-            color: #8E8E93;
-            font-style: italic;
+            font-size: 13px;
+            color: #666666;
             line-height: 1.5;
         }
 
@@ -561,8 +546,9 @@
             container.innerHTML = resultBrands.map((brand, index) => {
                 const data = brands[brand] || { drinks: ['经典奶茶'], reason: '适合你的选择' };
                 const rank = index === 0 ? '🏆 最佳匹配' : `🥈 备选${index}`;
+                const cardClass = index === 0 ? 'result-card best' : 'result-card alt';
                 return `
-                    <div class="result-card">
+                    <div class="${cardClass}">
                         <div class="result-rank">${rank}</div>
                         <div class="result-brand">${brand}</div>
                         <div class="result-drinks">${data.drinks.join(' / ')}</div>
