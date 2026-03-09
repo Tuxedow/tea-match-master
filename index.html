@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>奶茶匹配大师 - 找到你的命中注定那杯茶</title>
+    <title>你是什么茶？ - 找到你的命中注定那杯茶</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -497,24 +497,18 @@
         }
     </style>
 </head>
-<body>
+<body onload="initApp()">
     <header>
         <div class="logo">
             <div class="logo-icon">🧋</div>
-            <h1>奶茶匹配大师</h1>
+            <h1>你是什么茶？</h1>
         </div>
     </header>
 
     <div class="container">
         <!-- Hero区域 -->
-        <div class="hero" id="hero">
-            <h2>找到你的命中注定那杯茶</h2>
-            <p>回答几个简单问题，帮你匹配最适合的奶茶</p>
-            <button class="start-btn" onclick="startQuiz()">开始匹配</button>
-        </div>
-
         <!-- 进度条 -->
-        <div class="progress-bar" id="progressBar" style="display: none;">
+        <div class="progress-bar" id="progressBar" style="display: flex;">
             <div class="progress-dot" data-step="1"></div>
             <div class="progress-dot" data-step="2"></div>
             <div class="progress-dot" data-step="3"></div>
@@ -548,7 +542,7 @@
                 </div>
             </div>
             <div class="nav-buttons">
-                <button class="btn btn-secondary" onclick="goBack(1)">上一步</button>
+                <button class="btn btn-secondary" style="visibility: hidden;">上一步</button>
                 <button class="btn btn-primary" id="btn1" disabled onclick="nextStep(1)">下一步</button>
             </div>
         </div>
@@ -690,6 +684,11 @@
     </div>
 
     <script>
+        // 初始化应用 - 直接显示第一个问题
+        function initApp() {
+            showStep(1);
+        }
+
         // 用户选择数据
         const userData = {
             age: '',
@@ -929,10 +928,8 @@
             return reasons[brand] || '适合你的选择';
         }
 
-        // 开始测试
+        // 开始测试 (已废弃，使用initApp直接初始化)
         function startQuiz() {
-            document.getElementById('hero').style.display = 'none';
-            document.getElementById('progressBar').style.display = 'flex';
             showStep(1);
         }
 
@@ -979,11 +976,8 @@
         function goBack(currentStep) {
             if (currentStep > 1) {
                 showStep(currentStep - 1);
-            } else {
-                document.getElementById('hero').style.display = 'block';
-                document.getElementById('progressBar').style.display = 'none';
-                document.querySelectorAll('.step-card').forEach(card => card.style.display = 'none');
             }
+            // 如果是第一step stay on step 1
         }
 
         // 显示结果
@@ -1161,10 +1155,8 @@
             document.getElementById('shareSection').style.display = 'none';
             document.getElementById('scratchCard').classList.remove('scratched');
 
-            // 显示首页
-            document.getElementById('hero').style.display = 'block';
-            document.getElementById('progressBar').style.display = 'none';
-            document.querySelectorAll('.step-card').forEach(card => card.style.display = 'none');
+            // 重新显示第一个问题
+            showStep(1);
         }
     </script>
 </body>
