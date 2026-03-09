@@ -9,123 +9,258 @@
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
         :root {
-            /* 霸王茶姬风格 - 清新雅致 */
-            --tea-green: #2D5A3D;
-            --tea-green-light: #4A7C59;
-            --tea-green-pale: #E8F0EA;
-            --gold: #C9A962;
-            --gold-light: #E8D9B5;
-            --cream: #FAF8F5;
-            --white: #FFFFFF;
-            --text-dark: #1A1A1A;
-            --text: #333333;
-            --text-secondary: #666666;
-            --text-light: #999999;
-            --border: #E5E5E0;
-            --border-light: #F0F0EB;
-            --shadow: 0 2px 8px rgba(45, 90, 61, 0.08);
-            --shadow-hover: 0 4px 16px rgba(45, 90, 61, 0.15);
-            --radius: 8px;
-            --radius-lg: 12px;
+            /* 国风霸王茶姬风格 - 朱砂红主题 */
+            --zhusha-red: #C23A3A;
+            --zhusha-dark: #8B2525;
+            --zhusha-light: #E86868;
+            --mi-bai: #FDF8F3;
+            --mi-bai-dark: #F5EBE3;
+            --tea-green: #7BAO8C;
+            --tea-green-light: #A8CDAB;
+            --tea-green-pale: #E8F2EA;
+            --gold: #D4AF37;
+            --gold-light: #F0D78C;
+            --gold-glow: rgba(212, 175, 55, 0.4);
+            --text-dark: #2C1810;
+            --text: #3D2822;
+            --text-secondary: #6B5347;
+            --shadow: 0 4px 20px rgba(194, 58, 58, 0.15);
+            --shadow-hover: 0 8px 30px rgba(194, 58, 58, 0.25);
+            --shadow-gold: 0 4px 20px var(--gold-glow);
+            --radius: 16px;
+            --radius-lg: 24px;
         }
 
-        /* 清新淡雅背景 */
+        /* 朱砂红大面积背景 */
         body {
-            background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
+            background: linear-gradient(165deg,
+                var(--zhusha-red) 0%,
+                var(--zhusha-dark) 40%,
+                var(--zhusha-red) 60%,
+                var(--zhusha-dark) 100%);
             min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Serif SC", serif;
+            position: relative;
+            overflow-x: hidden;
         }
 
+        /* 背景装饰 - 东方纹样 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(123, 170, 140, 0.1) 0%, transparent 35%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 头部 */
         header {
-            background: var(--white);
-            border-bottom: 1px solid var(--border-light);
-            padding: 20px 24px;
+            background: linear-gradient(180deg, rgba(253, 248, 243, 0.95) 0%, rgba(245, 235, 227, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--gold);
+            padding: 24px 32px;
             text-align: center;
-            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 2px;
         }
 
         header h1 {
-            font-size: 20px;
-            font-weight: 600;
-            letter-spacing: 4px;
-            color: var(--tea-green);
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 8px;
+            color: var(--zhusha-dark);
             text-transform: uppercase;
+            text-shadow: 1px 1px 2px rgba(212, 175, 55, 0.3);
+        }
+
+        /* 主容器 */
+        .container {
+            position: relative;
+            z-index: 1;
+            padding: 40px 20px 80px;
         }
 
         /* 进度条 */
+        .progress {
+            margin-bottom: 40px;
+        }
+
+        .progress-dot {
+            background: rgba(255, 255, 255, 0.3);
+            height: 6px;
+        }
+
         .progress-dot.active {
-            background: var(--tea-green);
+            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+            box-shadow: var(--shadow-gold);
+        }
+
+        /* 步骤标题 */
+        .step-number {
+            color: var(--gold);
+            font-weight: 700;
+            letter-spacing: 3px;
+            font-size: 14px;
+        }
+
+        .step-title {
+            color: var(--mi-bai);
+            font-weight: 600;
+            font-size: 28px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         /* 选项卡片 */
+        .options {
+            gap: 16px;
+        }
+
         .option {
-            background: var(--white);
-            border: 1px solid var(--border);
+            background: linear-gradient(135deg, var(--mi-bai) 0%, var(--mi-bai-dark) 100%);
+            border: 2px solid transparent;
             border-radius: var(--radius-lg);
-            padding: 20px 28px;
+            padding: 22px 32px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 17px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 18px;
             font-weight: 500;
             color: var(--text);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(212, 175, 55, 0.2),
+                transparent);
+            transition: left 0.6s ease;
         }
 
         .option:hover {
-            border-color: var(--tea-green-light);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-            background: var(--tea-green-pale);
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover), var(--shadow-gold);
+            background: linear-gradient(135deg, var(--mi-bai) 0%, #FFF5E6 100%);
+        }
+
+        .option:hover::before {
+            left: 100%;
         }
 
         .option.selected {
-            background: linear-gradient(135deg, var(--tea-green-pale) 0%, var(--white) 100%);
-            border-color: var(--tea-green);
-            border-width: 2px;
-            color: var(--tea-green);
-            font-weight: 600;
-            box-shadow: var(--shadow-hover);
+            background: linear-gradient(135deg, var(--zhusha-red) 0%, var(--zhusha-dark) 100%);
+            border-color: var(--gold);
+            border-width: 3px;
+            color: var(--mi-bai);
+            font-weight: 700;
+            box-shadow: var(--shadow-hover), 0 0 30px var(--gold-glow);
+            transform: translateY(-3px) scale(1.02);
         }
 
         /* 按钮 */
-        .btn-primary {
-            background: linear-gradient(135deg, var(--tea-green) 0%, var(--tea-green-light) 100%);
-            color: white;
-            font-size: 17px;
+        .btn {
+            padding: 18px 36px;
+            font-size: 18px;
             font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             border-radius: var(--radius-lg);
-            box-shadow: 0 4px 12px rgba(45, 90, 61, 0.3);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--zhusha-dark);
+            box-shadow: var(--shadow-gold), 0 4px 15px rgba(212, 175, 55, 0.4);
         }
 
         .btn-primary:hover {
-            opacity: 0.95;
-            box-shadow: 0 6px 20px rgba(45, 90, 61, 0.4);
-            transform: translateY(-1px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid var(--gold);
+            color: var(--mi-bai);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* 结果区域 */
+        .result-title {
+            color: var(--mi-bai);
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         /* 结果卡片 */
+        .result-card {
+            background: linear-gradient(135deg, var(--mi-bai) 0%, var(--mi-bai-dark) 100%);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+
         .result-card:first-child {
-            border-color: var(--tea-green);
-            border-width: 2px;
-            background: linear-gradient(135deg, var(--tea-green-pale) 0%, var(--white) 100%);
+            border: 3px solid var(--gold);
+            background: linear-gradient(135deg, #FFFDFA 0%, var(--mi-bai) 100%);
+            box-shadow: var(--shadow-hover), var(--shadow-gold);
         }
 
-        .result-brand {
-            color: var(--tea-green);
+        .result-rank {
+            color: var(--zhusha-red);
             font-weight: 700;
-        }
-
-        .step-number {
-            color: var(--tea-green);
-            font-weight: 600;
             letter-spacing: 2px;
         }
 
-        .step-title {
-            color: var(--text-dark);
-            font-weight: 600;
+        .result-brand {
+            color: var(--zhusha-dark);
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--zhusha-red) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .result-drinks {
+            color: var(--text);
+            font-size: 16px;
+        }
+
+        .result-reason {
+            color: var(--text-secondary);
+            font-style: italic;
         }
 
         * {
