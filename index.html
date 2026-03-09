@@ -6,72 +6,30 @@
     <title>奶茶匹配大师 - 找到你的命中注定那杯茶</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;700&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
         :root {
-            /* 黑酷系配色 */
-            --primary: #00FFE5;
-            --primary-dark: #00CCBB;
-            --secondary: #1A1A2E;
-            --accent: #FF6B9D;
-            --bg: #0D0D0D;
-            --card-bg: #1A1A2E;
-            --text: #FFFFFF;
-            --text-light: #A0A0A0;
-            --border: #2D2D44;
-            --shadow: 0 4px 20px rgba(0, 255, 229, 0.1);
-            --shadow-hover: 0 8px 30px rgba(0, 255, 229, 0.2);
-            --radius: 16px;
-            --radius-sm: 8px;
-            /* 赛博朋克配色 */
-            --cyber-pink: #FF6B9D;
-            --cyber-blue: #00FFE5;
-            --cyber-purple: #8B5CF6;
-            --cyber-gold: #FFD700;
-            --cyber-red: #FF4757;
-            --cyber-green: #00FF88;
-        }
-
-        body {
-            background: #0D0D0D;
-            color: #FFFFFF;
-        }
-
-        body::before {
-            background:
-                radial-gradient(circle at 10% 20%, rgba(0, 255, 229, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(255, 107, 157, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 70%);
-        }
-
-        /* 黑色背景 */
-        .anime-bg {
-            background: linear-gradient(135deg, #0D0D0D 0%, #1A1A2E 50%, #0D0D0D 100%);
-        }
-
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -1;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .floating-item {
-            position: absolute;
-            font-size: 32px;
-            opacity: 0.6;
-            animation: float 6s ease-in-out infinite;
-            filter: drop-shadow(0 0 8px var(--primary));
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
+            /* Notion风格配色 - 清爽简洁 */
+            --bg: #FFFFFF;
+            --bg-secondary: #F7F7F5;
+            --bg-tertiary: #EFEFEF;
+            --text: #37352F;
+            --text-secondary: #787774;
+            --text-tertiary: #9B9A97;
+            --border: #E9E9E7;
+            --border-hover: #D3D3D0;
+            --card-bg: #FFFFFF;
+            --card-border: #E0E0E0;
+            --accent: #E8634A;
+            --accent-light: #FDEEE9;
+            --selection: #E8F4FD;
+            --success: #0F7B6C;
+            --warning: #D4A72C;
+            --shadow: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-hover: 0 4px 12px rgba(0,0,0,0.1);
+            --radius: 8px;
+            --radius-sm: 4px;
         }
 
         * {
@@ -81,35 +39,18 @@
         }
 
         body {
-            font-family: 'Noto Sans SC', sans-serif;
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
         }
 
-        /* 背景装饰 */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 10% 20%, rgba(255, 107, 107, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(255, 234, 167, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(255, 107, 107, 0.03) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* 导航 - 赛博朋克风格 */
+        /* 导航 */
         header {
-            background: linear-gradient(90deg, #1A1A2E 0%, #0D0D0D 100%);
-            border-bottom: 2px solid var(--primary);
-            padding: 16px 24px;
-            box-shadow: 0 4px 20px rgba(0, 255, 229, 0.2);
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 24px;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -118,1684 +59,1113 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
-            max-width: 1200px;
+            gap: 10px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--cyber-pink), var(--cyber-purple));
-            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            box-shadow: 0 0 15px var(--cyber-pink);
+            font-size: 16px;
+            color: white;
         }
 
         .logo h1 {
-            font-family: 'Ma Shan Zheng', serif;
-            font-size: 28px;
-            color: white;
-            letter-spacing: 2px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text);
+            letter-spacing: 0.5px;
         }
 
-        /* Hero区域 */
+        /* 主容器 */
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        /* Hero */
         .hero {
             text-align: center;
-            padding: 60px 24px;
-            max-width: 800px;
-            margin: 0 auto;
-            animation: fadeInUp 0.8s ease;
+            padding: 20px 0 40px;
         }
 
         .hero h2 {
-            font-family: 'Ma Shan Zheng', serif;
-            font-size: 42px;
-            color: var(--primary);
-            margin-bottom: 16px;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
         }
 
         .hero p {
-            font-size: 18px;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
+            font-size: 15px;
+            color: var(--text-secondary);
         }
 
-        .hero .bubble {
-            display: inline-block;
-            background: linear-gradient(135deg, #1A1A2E 0%, #2D2D44 100%);
-            border: 1px solid var(--primary);
-            padding: 8px 20px;
-            border-radius: 30px;
-            margin: 8px 4px;
-            font-size: 14px;
-            color: var(--primary);
-            box-shadow: 0 0 10px rgba(0, 255, 229, 0.3);
+        /* 进度指示器 */
+        .progress-bar {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 32px;
         }
 
-        /* 主内容区 */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 24px 60px;
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+            transition: all 0.3s ease;
         }
 
-        /* 卡片样式 - 赛博朋克 */
+        .progress-dot.active {
+            background: var(--accent);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .progress-dot.completed {
+            background: var(--success);
+        }
+
+        /* 卡片 - Notion风格 */
         .card {
             background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: var(--radius);
-            padding: 32px;
-            margin-bottom: 24px;
+            padding: 24px;
+            margin-bottom: 20px;
             box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            animation: fadeInUp 0.6s ease;
-            position: relative;
-            overflow: hidden;
+            transition: box-shadow 0.2s ease;
+            animation: fadeIn 0.4s ease;
         }
 
-        .card::before {
-            content: '';
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* 表单选项 */
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .option-btn {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-size: 15px;
+            color: var(--text);
+        }
+
+        .option-btn:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--border-hover);
+        }
+
+        .option-btn.selected {
+            background: var(--accent-light);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .option-btn .check {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--border-hover);
+            border-radius: 50%;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s ease;
+        }
+
+        .option-btn.selected .check {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .option-btn.selected .check::after {
+            content: '✓';
+            font-size: 12px;
+        }
+
+        /* 导航按钮 */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            border: none;
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* 开始按钮 */
+        .start-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            margin-top: 24px;
+        }
+
+        .start-btn:hover {
+            opacity: 0.9;
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* 结果区域 */
+        .result-section {
+            display: none;
+        }
+
+        .result-section.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* 刮刮卡样式 */
+        .scratch-card {
+            position: relative;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border-radius: var(--radius);
+            padding: 40px 24px;
+            text-align: center;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .scratch-card.scratched {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .scratch-cover {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--cyber-pink), var(--cyber-blue), var(--cyber-purple));
-        }
-
-        .card-title {
-            font-family: 'Ma Shan Zheng', serif;
-            font-size: 28px;
-            color: var(--primary);
-            margin-bottom: 24px;
+            bottom: 0;
+            background: linear-gradient(135deg, #C0C0C0 0%, #A0A0A0 100%);
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.5s ease;
         }
 
-        .card-title::before {
-            content: '';
-            width: 4px;
-            height: 28px;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-
-        /* 表单组 */
-        .form-group {
-            margin-bottom: 24px;
-        }
-
-        .form-group:last-child {
-            margin-bottom: 0;
-        }
-
-        .form-label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 12px;
-            color: var(--text);
-        }
-
-        .form-label .required {
-            color: var(--primary);
-            margin-left: 4px;
-        }
-
-        .form-hint {
-            font-size: 13px;
-            color: var(--text-light);
-            margin-top: 6px;
-        }
-
-        /* 单选按钮组 */
-        .radio-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .radio-item {
-            position: relative;
-        }
-
-        .radio-item input {
-            position: absolute;
+        .scratch-cover.hidden {
             opacity: 0;
-            cursor: pointer;
+            pointer-events: none;
         }
 
-        .radio-item label {
-            display: block;
-            padding: 10px 20px;
-            background: var(--bg);
-            border: 2px solid var(--border);
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 14px;
-        }
-
-        .radio-item input:checked + label {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: white;
-            border-color: var(--primary);
-            transform: scale(1.02);
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-        }
-
-        .radio-item label:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        /* 多选标签组 */
-        .tag-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .tag-item {
-            position: relative;
-        }
-
-        .tag-item input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-        }
-
-        .tag-item label {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 16px;
-            background: var(--bg);
-            border: 2px solid var(--border);
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 14px;
-        }
-
-        .tag-item label::before {
-            content: '';
-            width: 16px;
-            height: 16px;
-            border: 2px solid var(--border);
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .tag-item input:checked + label {
-            background: linear-gradient(135deg, #FFF5E6 0%, var(--secondary) 100%);
-            border-color: var(--primary);
-            color: var(--primary-dark);
-        }
-
-        .tag-item input:checked + label::before {
-            background: var(--primary);
-            border-color: var(--primary);
-        }
-
-        .tag-item label:hover {
-            border-color: var(--primary);
-        }
-
-        .tag-icon {
-            font-size: 16px;
-        }
-
-        /* 提交按钮 */
-        .submit-btn {
-            display: block;
-            width: 100%;
-            max-width: 400px;
-            margin: 32px auto 0;
-            padding: 16px 40px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
-            font-family: 'Noto Sans SC', sans-serif;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.5);
-        }
-
-        .submit-btn:active {
-            transform: translateY(-1px);
-        }
-
-        .submit-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        /* 结果区域 */
-        #result {
-            display: none;
-        }
-
-        .result-header {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        .result-header h3 {
-            font-family: 'Ma Shan Zheng', serif;
-            font-size: 32px;
-            color: var(--primary);
+        .scratch-cover-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #666;
             margin-bottom: 8px;
         }
 
-        .match-score {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, var(--cyber-purple), var(--cyber-pink));
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-size: 20px;
+        .scratch-cover-hint {
+            font-size: 13px;
+            color: #888;
+        }
+
+        .scratch-result {
+            padding: 20px 0;
+        }
+
+        .scratch-result h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #FFD700;
+            margin-bottom: 8px;
+        }
+
+        .scratch-result .match-score {
+            font-size: 48px;
             font-weight: 700;
             color: white;
-            box-shadow: 0 0 20px var(--cyber-purple);
         }
 
-        .match-score .score {
-            font-size: 28px;
-            color: var(--primary);
+        /* 结果详情卡片 */
+        .result-detail {
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-top: 16px;
         }
 
-        /* 推荐品牌 */
-        .brand-section {
+        .result-detail h4 {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .result-detail .brand-name {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .result-detail .drink-name {
+            font-size: 16px;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .result-detail .reason {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* 多个推荐结果 */
+        .result-list {
+            margin-top: 16px;
+        }
+
+        .result-item {
+            background: var(--bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            margin-bottom: 8px;
+        }
+
+        .result-item .rank {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .result-item .brand {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .result-item .drinks {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            padding-left: 34px;
+        }
+
+        /* 重新测试按钮 */
+        .retry-section {
+            text-align: center;
             margin-top: 32px;
         }
 
-        .brand-card {
-            background: linear-gradient(135deg, #FFF9F0 0%, #FFF5E6 100%);
-            border: 2px solid var(--secondary);
+        .retry-btn {
+            padding: 12px 32px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 24px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-            animation: fadeInUp 0.5s ease;
-            animation-fill-mode: both;
+            font-size: 14px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.15s ease;
         }
 
-        .brand-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .brand-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
-        }
-
-        .brand-name {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .brand-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .brand-title {
-            font-size: 22px;
-            font-weight: 700;
+        .retry-btn:hover {
+            background: var(--bg-tertiary);
             color: var(--text);
-        }
-
-        .brand-price {
-            background: var(--secondary);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            color: var(--text);
-        }
-
-        .brand-reason {
-            color: var(--text-light);
-            font-size: 14px;
-            margin-bottom: 16px;
-            padding-left: 12px;
-            border-left: 3px solid var(--primary);
-        }
-
-        /* 推荐单品 */
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 12px;
-            padding: 16px;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .product-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .product-name {
-            font-weight: 600;
-            font-size: 16px;
-            margin-bottom: 8px;
-            color: var(--text);
-        }
-
-        .product-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 12px;
-        }
-
-        .product-tag {
-            font-size: 12px;
-            padding: 3px 10px;
-            background: var(--bg);
-            border-radius: 12px;
-            color: var(--text-light);
-        }
-
-        .product-tag.sweet {
-            background: #FFE4E1;
-            color: #D63031;
-        }
-
-        .product-tag.milk {
-            background: #FFF8DC;
-            color: #DAA520;
-        }
-
-        .product-tag.fruit {
-            background: #E8F5E9;
-            color: #2E7D32;
-        }
-
-        .product-tag.tea {
-            background: #E3F2FD;
-            color: #1565C0;
-        }
-
-        .product-price {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 18px;
-        }
-
-        .product-note {
-            font-size: 12px;
-            color: var(--accent);
-            margin-top: 8px;
-        }
-
-        /* 匹配度进度条 */
-        .match-bar {
-            height: 8px;
-            background: var(--border);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 8px;
-        }
-
-        .match-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 4px;
-            transition: width 1s ease;
-        }
-
-        /* 页脚 */
-        footer {
-            text-align: center;
-            padding: 24px;
-            color: var(--text-light);
-            font-size: 14px;
-        }
-
-        footer a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        /* 动画 */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes popIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.5s ease;
-        }
-
-        /* 响应式 */
-        @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 32px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
-
-            .card {
-                padding: 24px 16px;
-            }
-
-            .radio-group, .tag-group {
-                gap: 8px;
-            }
-
-            .radio-item label, .tag-item label {
-                padding: 8px 14px;
-                font-size: 13px;
-            }
-
-            .products {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* 加载状态 */
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 40px;
-        }
-
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid var(--border);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 16px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* 游戏化系统 - 赛博朋克 */
-        .user-level {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, var(--cyber-purple), var(--cyber-pink));
-            padding: 8px 16px;
-            border-radius: 20px;
-            color: white;
-            font-size: 14px;
-            margin-left: auto;
-            box-shadow: 0 0 15px var(--cyber-purple);
-            border: 1px solid var(--primary);
-        }
-
-        .level-badge {
-            width: 28px;
-            height: 28px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--anime-pink);
-            font-size: 14px;
-        }
-
-        .user-title {
-            font-family: 'ZCOOL KuaiLe', cursive;
-            font-size: 16px;
-        }
-
-        /* 成就徽章 - 赛博朋克 */
-        .achievements {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 16px;
-            padding: 12px;
-            background: linear-gradient(135deg, #1A1A2E, #2D2D44);
-            border-radius: 12px;
-            border: 2px dashed var(--primary);
-        }
-
-        .achievement {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px 10px;
-            background: white;
-            border-radius: 12px;
-            font-size: 12px;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .achievement.unlocked {
-            border-color: var(--anime-gold);
-            background: linear-gradient(135deg, #FFF8DC, #FFEFD5);
-            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
-        }
-
-        .achievement-icon {
-            font-size: 16px;
-        }
-
-        /* 抽卡风格结果页 - 赛博朋克 */
-        .gacha-header {
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(135deg, #1A1A2E 0%, #2D2D44 100%);
-            border: 2px solid var(--primary);
-            border-radius: 16px;
-            margin-bottom: 24px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(0, 255, 229, 0.3);
-        }
-
-        .gacha-header::before {
-            content: '★';
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            font-size: 40px;
-            color: var(--primary);
-            opacity: 0.5;
-            animation: starRotate 3s linear infinite;
-        }
-
-        .gacha-header::after {
-            content: '★';
-            position: absolute;
-            bottom: 10px;
-            right: 20px;
-            font-size: 30px;
-            color: var(--cyber-pink);
-            opacity: 0.3;
-            animation: starRotate 3s linear infinite reverse;
-        }
-
-        @keyframes starRotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .gacha-title {
-            font-family: 'ZCOOL KuaiLe', cursive;
-            font-size: 28px;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            margin-bottom: 8px;
-        }
-
-        .gacha-subtitle {
-            color: white;
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        /* 稀有度标签 */
-        .rarity {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .rarity.SSR {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: white;
-            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.5);
-        }
-
-        .rarity.SR {
-            background: linear-gradient(135deg, #C0C0C0, #A9A9A9);
-            color: white;
-        }
-
-        .rarity.R {
-            background: linear-gradient(135deg, #87CEEB, #4682B4);
-            color: white;
         }
 
         /* 分享按钮 */
-        .share-buttons {
+        .share-section {
             display: flex;
-            gap: 12px;
             justify-content: center;
+            gap: 12px;
             margin-top: 24px;
-            flex-wrap: wrap;
         }
 
         .share-btn {
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 25px;
+            padding: 10px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
             font-size: 14px;
-            font-weight: 500;
+            color: var(--text-secondary);
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Noto Sans SC', sans-serif;
+            transition: all 0.15s ease;
         }
 
         .share-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            background: var(--bg-tertiary);
+            color: var(--text);
         }
 
-        .share-btn.screenshot {
-            background: linear-gradient(135deg, var(--anime-green), #3CB371);
-            color: white;
+        /* 截图水印区域 */
+        .screenshot-area {
+            background: var(--bg);
         }
 
-        .share-btn.copy {
-            background: linear-gradient(135deg, var(--anime-blue), #4169E1);
-            color: white;
-        }
-
-        .share-btn.download {
-            background: linear-gradient(135deg, var(--anime-pink), #FF1493);
-            color: white;
-        }
-
-        /* 等级系统说明 - 赛博朋克 */
-        .level-info {
-            text-align: center;
-            margin-bottom: 20px;
-            padding: 16px;
-            background: linear-gradient(135deg, #1A1A2E, #2D2D44);
-            border-radius: 12px;
-            border: 1px solid var(--primary);
-        }
-
-        .level-title {
-            font-family: 'ZCOOL KuaiLe', cursive;
-            font-size: 18px;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-
-        .level-desc {
-            font-size: 13px;
-            color: var(--text-light);
-        }
-
-        /* 动画效果 */
-        .bounce-in {
-            animation: bounceIn 0.6s ease;
-        }
-
-        @keyframes bounceIn {
-            0% { transform: scale(0.3); opacity: 0; }
-            50% { transform: scale(1.05); }
-            70% { transform: scale(0.9); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: var(--anime-gold);
-            border-radius: 50%;
-            animation: sparkle 1s ease-in-out infinite;
-        }
-
-        @keyframes sparkle {
-            0%, 100% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(1); opacity: 1; }
-        }
-
-        /* 抽卡动画 */
-        .pull-animation {
-            animation: cardPull 0.5s ease-out;
-        }
-
-        @keyframes cardPull {
-            0% { transform: translateY(50px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-
-        /* 响应式调整 */
-        @media (max-width: 768px) {
-            .user-level {
-                margin-left: 0;
-                margin-top: 12px;
+        /* 响应式 */
+        @media (max-width: 640px) {
+            .container {
+                padding: 24px 16px 60px;
             }
-            .share-buttons {
-                flex-direction: column;
+
+            .hero h2 {
+                font-size: 26px;
             }
-            .share-btn {
-                width: 100%;
-                justify-content: center;
+
+            .card {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 浮动装饰元素 -->
-    <div class="floating-elements">
-        <div class="floating-item" style="top: 10%; left: 5%; animation-delay: 0s;">🧋</div>
-        <div class="floating-item" style="top: 20%; right: 10%; animation-delay: 1s;">🍵</div>
-        <div class="floating-item" style="top: 60%; left: 8%; animation-delay: 2s;">🍓</div>
-        <div class="floating-item" style="top: 80%; right: 5%; animation-delay: 0.5s;">🧋</div>
-        <div class="floating-item" style="top: 40%; left: 3%; animation-delay: 1.5s;">⭐</div>
-        <div class="floating-item" style="top: 70%; right: 15%; animation-delay: 2.5s;">🍵</div>
-        <div class="floating-item" style="top: 30%; right: 3%; animation-delay: 3s;">🍊</div>
-    </div>
-
     <header>
         <div class="logo">
             <div class="logo-icon">🧋</div>
             <h1>奶茶匹配大师</h1>
-            <div class="user-level" id="userLevel">
-                <div class="level-badge" id="levelBadge">1</div>
-                <span class="user-title" id="userTitle">萌新奶茶师</span>
-            </div>
         </div>
     </header>
 
-    <section class="hero">
-        <h2>✨ 找到你的命中注定那杯茶 ✨</h2>
-        <p>输入你的个人信息，开启你的奶茶之旅，成为奶茶大师吧！</p>
-        <div style="margin-top: 20px;">
-            <span class="bubble">🎂 年龄</span>
-            <span class="bubble">💼 职业</span>
-            <span class="bubble">❤️ 口味</span>
-            <span class="bubble">💰 预算</span>
-            <span class="bubble">🏃 场景</span>
-        </div>
-    </section>
-
     <div class="container">
-        <div class="card">
-            <h3 class="card-title">填写你的信息</h3>
-
-            <div class="form-group">
-                <label class="form-label">年龄段 <span class="required">*</span></label>
-                <div class="radio-group">
-                    <div class="radio-item">
-                        <input type="radio" name="age" id="age1" value="teen">
-                        <label for="age1">15岁以下</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="age" id="age2" value="student">
-                        <label for="age2">15-22岁</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="age" id="age3" value="young">
-                        <label for="age3">23-30岁</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="age" id="age4" value="middle">
-                        <label for="age4">31-40岁</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="age" id="age5" value="senior">
-                        <label for="age5">40岁以上</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">性别</label>
-                <div class="radio-group">
-                    <div class="radio-item">
-                        <input type="radio" name="gender" id="male" value="male">
-                        <label for="male">👨 男</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="gender" id="female" value="female" checked>
-                        <label for="female">👩 女</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="gender" id="other" value="other">
-                        <label for="other">🧑 其他</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">职业 <span class="required">*</span></label>
-                <div class="radio-group">
-                    <div class="radio-item">
-                        <input type="radio" name="job" id="student" value="student">
-                        <label for="student">🎓 学生</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="job" id="office" value="office">
-                        <label for="office">💼 上班族</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="job" id="freelance" value="freelance">
-                        <label for="freelance">🎨 自由职业</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="job" id="homemaker" value="homemaker">
-                        <label for="homemaker">🏠 家庭主妇/夫</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="job" id="retired" value="retired">
-                        <label for="retired">👴 退休</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">口味偏好 <span class="required">*</span> (可多选)</label>
-                <div class="tag-group">
-                    <div class="tag-item">
-                        <input type="checkbox" name="taste" id="sweet" value="sweet">
-                        <label for="sweet"><span class="tag-icon">🍬</span> 甜系</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="taste" id="milk" value="milk">
-                        <label for="milk"><span class="tag-icon">🥛</span> 奶系</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="taste" id="tea" value="tea">
-                        <label for="tea"><span class="tag-icon">🍵</span> 茶系</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="taste" id="fruit" value="fruit">
-                        <label for="fruit"><span class="tag-icon">🍊</span> 果系</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="taste" id="coffee" value="coffee">
-                        <label for="coffee"><span class="tag-icon">☕</span> 咖啡因</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">偏好品牌 (可多选，不选则智能推荐)</label>
-                <div class="tag-group">
-                    <div class="tag-item">
-                        <input type="checkbox" name="brand" id="brand1" value="喜茶">
-                        <label for="brand1">喜茶</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="brand" id="brand2" value="奈雪的茶">
-                        <label for="brand2">奈雪的茶</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="brand" id="brand3" value="霸王茶姬">
-                        <label for="brand3">霸王茶姬</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="brand" id="brand4" value="古茗">
-                        <label for="brand4">古茗</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="brand" id="brand5" value="书亦烧仙草">
-                        <label for="brand5">书亦烧仙草</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="brand" id="brand6" value="茶百道">
-                        <label for="brand6">茶百道</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="brand" id="brand9" value="CoCo都可">
-                        <label for="brand9">CoCo都可</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="brand" id="brand10" value="一点点">
-                        <label for="brand10">一点点</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="brand" id="brand11" value="蜜雪冰城">
-                        <label for="brand11">蜜雪冰城</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="brand" id="brand12" value="茶颜悦色">
-                        <label for="brand12">茶颜悦色</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="brand" id="brand13" value="乐乐茶">
-                        <label for="brand13">乐乐茶</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="brand" id="brand14" value="沪上阿姨">
-                        <label for="brand14">沪上阿姨</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">预算区间 <span class="required">*</span></label>
-                <div class="radio-group">
-                    <div class="radio-item">
-                        <input type="radio" name="price" id="price1" value="low">
-                        <label for="price1">10元以下</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="price" id="price2" value="medium" checked>
-                        <label for="price2">10-20元</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="price" id="price3" value="high">
-                        <label for="price3">20-30元</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" name="price" id="price4" value="luxury">
-                        <label for="price4">30元以上</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">饮用场景 <span class="required">*</span> (可多选)</label>
-                <div class="tag-group">
-                    <div class="tag-item">
-                        <input type="checkbox" name="scene" id="scene1" value="daily" checked>
-                        <label for="scene1">🌿 日常解渴</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="scene" id="scene2" value="afternoon">
-                        <label for="scene2">☕ 下午茶</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="scene" id="scene3" value="photo">
-                        <label for="scene3">📸 拍照打卡</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="scene" id="scene4" value="party">
-                        <label for="scene4">🎉 社交聚会</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="scene" id="scene5" value="sport">
-                        <label for="scene5">🏃 运动后</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">身体状况 (可多选)</label>
-                <div class="tag-group">
-                    <div class="tag-item">
-                        <input type="checkbox" name="health" id="health1" value="normal">
-                        <label for="health1">💪 正常</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="health" id="health2" value="lactose">
-                        <label for="health2">🚫 乳糖不耐受</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="health" id="health3" value="sugar">
-                        <label for="health3">🍬 控糖</label>
-                    </div>
-                    <div class="tag-item">
-                        <input type="checkbox" name="health" id="health4" value="insomnia">
-                        <label for="health4">😴 失眠体质</label>
-                    </div>
-                </div>
-            </div>
-
-            <button class="submit-btn" onclick="matchTea()">
-                ✨ 开始匹配
-            </button>
+        <!-- Hero区域 -->
+        <div class="hero" id="hero">
+            <h2>找到你的命中注定那杯茶</h2>
+            <p>回答几个简单问题，帮你匹配最适合的奶茶</p>
+            <button class="start-btn" onclick="startQuiz()">开始匹配</button>
         </div>
 
-        <div class="loading" id="loading">
-            <div class="loading-spinner"></div>
-            <p>正在为你分析...</p>
+        <!-- 进度条 -->
+        <div class="progress-bar" id="progressBar" style="display: none;">
+            <div class="progress-dot" data-step="1"></div>
+            <div class="progress-dot" data-step="2"></div>
+            <div class="progress-dot" data-step="3"></div>
+            <div class="progress-dot" data-step="4"></div>
         </div>
 
-        <div class="card" id="result">
-            <!-- 抽卡风格头部 -->
-            <div class="gacha-header">
-                <div class="gacha-title">🎰 召唤结果 🎰</div>
-                <div class="gacha-subtitle">根据你的属性，召唤出最适合的奶茶！</div>
-            </div>
-
-            <!-- 等级信息 -->
-            <div class="level-info">
-                <div class="level-title">⭐ 奶茶大师等级 ⭐</div>
-                <div class="level-desc" id="levelDesc">完成匹配后查看你的等级</div>
-            </div>
-
-            <!-- 成就徽章 -->
-            <div class="achievements" id="achievements">
-                <div class="achievement" data-id="first">
-                    <span class="achievement-icon">🌟</span>
-                    <span>初次匹配</span>
+        <!-- 步骤1: 年龄 -->
+        <div class="card step-card" id="step1" style="display: none;">
+            <div class="card-title">Step 1 / 4</div>
+            <h3 style="font-size: 20px; margin-bottom: 16px;">你的年龄是？</h3>
+            <div class="options-grid">
+                <div class="option-btn" data-value="18以下" onclick="selectOption(1, this)">
+                    <span class="check"></span>
+                    18岁以下
                 </div>
-                <div class="achievement" data-id="sweet">
-                    <span class="achievement-icon">🍬</span>
-                    <span>甜党</span>
+                <div class="option-btn" data-value="18-25" onclick="selectOption(1, this)">
+                    <span class="check"></span>
+                    18-25岁
                 </div>
-                <div class="achievement" data-id="milk">
-                    <span class="achievement-icon">🥛</span>
-                    <span>奶系</span>
+                <div class="option-btn" data-value="26-35" onclick="selectOption(1, this)">
+                    <span class="check"></span>
+                    26-35岁
                 </div>
-                <div class="achievement" data-id="fruit">
-                    <span class="achievement-icon">🍊</span>
-                    <span>果系</span>
+                <div class="option-btn" data-value="36-45" onclick="selectOption(1, this)">
+                    <span class="check"></span>
+                    36-45岁
                 </div>
-                <div class="achievement" data-id="tea">
-                    <span class="achievement-icon">🍵</span>
-                    <span>茶系</span>
-                </div>
-                <div class="achievement" data-id="high-score">
-                    <span class="achievement-icon">💯</span>
-                    <span>高分</span>
+                <div class="option-btn" data-value="45以上" onclick="selectOption(1, this)">
+                    <span class="check"></span>
+                    45岁以上
                 </div>
             </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goBack(1)">上一步</button>
+                <button class="btn btn-primary" id="btn1" disabled onclick="nextStep(1)">下一步</button>
+            </div>
+        </div>
 
-            <div class="result-header">
-                <h3>🎉 为你推荐的最佳选择</h3>
-                <div class="match-score">
-                    <span>综合匹配度</span>
-                    <span class="score" id="totalScore">0%</span>
+        <!-- 步骤2: 性别 -->
+        <div class="card step-card" id="step2" style="display: none;">
+            <div class="card-title">Step 2 / 4</div>
+            <h3 style="font-size: 20px; margin-bottom: 16px;">你的性别是？</h3>
+            <div class="options-grid">
+                <div class="option-btn" data-value="男" onclick="selectOption(2, this)">
+                    <span class="check"></span>
+                    小哥哥
                 </div>
-                <div class="match-bar">
-                    <div class="match-bar-fill" id="scoreBar" style="width: 0%"></div>
+                <div class="option-btn" data-value="女" onclick="selectOption(2, this)">
+                    <span class="check"></span>
+                    小姐姐
+                </div>
+                <div class="option-btn" data-value="其他" onclick="selectOption(2, this)">
+                    <span class="check"></span>
+                    其他
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goBack(2)">上一步</button>
+                <button class="btn btn-primary" id="btn2" disabled onclick="nextStep(2)">下一步</button>
+            </div>
+        </div>
+
+        <!-- 步骤3: 职业 -->
+        <div class="card step-card" id="step3" style="display: none;">
+            <div class="card-title">Step 3 / 4</div>
+            <h3 style="font-size: 20px; margin-bottom: 16px;">你的职业是？</h3>
+            <div class="options-grid">
+                <div class="option-btn" data-value="学生" onclick="selectOption(3, this)">
+                    <span class="check"></span>
+                    学生党
+                </div>
+                <div class="option-btn" data-value="程序员" onclick="selectOption(3, this)">
+                    <span class="check"></span>
+                    程序员/IT
+                </div>
+                <div class="option-btn" data-value="上班族" onclick="selectOption(3, this)">
+                    <span class="check"></span>
+                    上班族
+                </div>
+                <div class="option-btn" data-value="教师" onclick="selectOption(3, this)">
+                    <span class="check"></span>
+                    教师/公务员
+                </div>
+                <div class="option-btn" data-value="自由职业" onclick="selectOption(3, this)">
+                    <span class="check"></span>
+                    自由职业
+                </div>
+                <div class="option-btn" data-value="家庭" onclick="selectOption(3, this)">
+                    <span class="check"></span>
+                    家庭主妇/主夫
+                </div>
+                <div class="option-btn" data-value="退休" onclick="selectOption(3, this)">
+                    <span class="check"></span>
+                    退休
+                </div>
+                <div class="option-btn" data-value="老板" onclick="selectOption(3, this)">
+                    <span class="check"></span>
+                    创业/老板
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goBack(3)">上一步</button>
+                <button class="btn btn-primary" id="btn3" disabled onclick="nextStep(3)">下一步</button>
+            </div>
+        </div>
+
+        <!-- 步骤4: 预算 -->
+        <div class="card step-card" id="step4" style="display: none;">
+            <div class="card-title">Step 4 / 4</div>
+            <h3 style="font-size: 20px; margin-bottom: 16px;">你的预算？</h3>
+            <div class="options-grid">
+                <div class="option-btn" data-value="差钱" onclick="selectOption(4, this)">
+                    <span class="check"></span>
+                    差钱 💰
+                </div>
+                <div class="option-btn" data-value="不差钱" onclick="selectOption(4, this)">
+                    <span class="check"></span>
+                    不差钱 ✨
+                </div>
+                <div class="option-btn" data-value="差钱咋滴" onclick="selectOption(4, this)">
+                    <span class="check"></span>
+                    差钱咋滴 😎
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="goBack(4)">上一步</button>
+                <button class="btn btn-primary" id="btn4" disabled onclick="showResult()">查看结果</button>
+            </div>
+        </div>
+
+        <!-- 结果区域 -->
+        <div class="result-section" id="resultSection">
+            <!-- 刮刮卡 -->
+            <div class="scratch-card" id="scratchCard">
+                <div class="scratch-cover" id="scratchCover">
+                    <div class="scratch-cover-text">👆 刮开看结果</div>
+                    <div class="scratch-cover-hint">点击或滑动刮开涂层</div>
+                </div>
+                <div class="scratch-result" id="scratchResult" style="display: none;">
+                    <h3 id="resultTitle">你的奶茶缘分</h3>
+                    <div class="match-score" id="matchScore">0%</div>
                 </div>
             </div>
 
-            <div id="brandsContainer"></div>
+            <!-- 结果详情 -->
+            <div id="resultDetail" style="display: none;">
+                <div class="result-detail">
+                    <h4>推荐品牌</h4>
+                    <div class="brand-name" id="resultBrand">-</div>
+                    <div class="drink-name" id="resultDrink">-</div>
+                    <div class="reason" id="resultReason">-</div>
+                </div>
+
+                <!-- 更多推荐 -->
+                <div class="result-list" id="resultList"></div>
+            </div>
 
             <!-- 分享按钮 -->
-            <div class="share-buttons">
-                <button class="share-btn screenshot" onclick="takeScreenshot()">
-                    📸 保存截图
+            <div class="share-section" id="shareSection" style="display: none;">
+                <button class="share-btn" onclick="screenshot()">
+                    📷 保存图片
                 </button>
-                <button class="share-btn copy" onclick="copyResult()">
+                <button class="share-btn" onclick="copyResult()">
                     📋 复制结果
                 </button>
-                <button class="share-btn download" onclick="downloadResult()">
-                    💾 下载报告
-                </button>
+            </div>
+
+            <!-- 重新测试 -->
+            <div class="retry-section">
+                <button class="retry-btn" onclick="resetQuiz()">重新测试</button>
             </div>
         </div>
     </div>
 
-    <footer>
-        <p>🧋 奶茶匹配大师 | 让每一杯茶都恰到好处 | 二次元奶茶召唤师</p>
-    </footer>
-
     <script>
-        // 奶茶品牌数据库
-        const brandsData = {
-            '喜茶': {
-                name: '喜茶',
-                icon: '喜',
-                price: '25-35元',
-                priceLevel: 'luxury',
-                tags: ['高端', '创新', '果茶'],
-                styles: ['sweet', 'fruit'],
-                description: '中国新式茶饮开创者，主打芝士水果茶系列',
-                products: [
-                    { name: '多肉葡萄', price: '29元', tags: ['sweet', 'fruit'], note: '招牌必点' },
-                    { name: '芝芝莓莓', price: '32元', tags: ['sweet', 'fruit', 'milk'], note: '经典款' },
-                    { name: '烤黑糖波波', price: '25元', tags: ['sweet', 'milk'], note: '可选无糖' },
-                    { name: '芝士绿妍', price: '22元', tags: ['tea', 'milk'], note: '茶味浓郁' }
-                ]
+        // 用户选择数据
+        const userData = {
+            age: '',
+            gender: '',
+            occupation: '',
+            budget: ''
+        };
+
+        // 品牌数据库
+        const brands = [
+            { name: '喜茶', avgPrice: 28, style: '高端创新', keywords: ['果茶', '芝士', '奶茶', '联名'] },
+            { name: '奈雪的茶', avgPrice: 27, style: '高端软欧包', keywords: ['果茶', '软欧包', '奶茶'] },
+            { name: '霸王茶姬', avgPrice: 18, style: '原叶鲜奶茶', keywords: ['奶茶', '原叶', '伯牙绝弦'] },
+            { name: '古茗', avgPrice: 15, style: '水果茶', keywords: ['水果茶', '奶茶', '杨枝甘露'] },
+            { name: '书亦烧仙草', avgPrice: 13, style: '烧仙草', keywords: ['烧仙草', '奶茶', '草本'] },
+            { name: '茶百道', avgPrice: 15, style: '果茶热门', keywords: ['杨枝甘露', '水果茶', '奶茶'] },
+            { name: 'CoCo都可', avgPrice: 16, style: '经典款多', keywords: ['奶茶', '果茶', '经典'] },
+            { name: '一点点', avgPrice: 15, style: '隐藏菜单', keywords: ['奶茶', '隐藏菜单', '波霸'] },
+            { name: '蜜雪冰城', avgPrice: 8, style: '性价比之王', keywords: ['冰淇淋', '柠檬水', '性价比'] },
+            { name: '茶颜悦色', avgPrice: 16, style: '茶味浓郁', keywords: ['幽兰拿铁', '茶饮', '中国风'] },
+            { name: '乐乐茶', avgPrice: 22, style: '软欧包', keywords: ['软欧包', '果茶', '脏脏包'] },
+            { name: '沪上阿姨', avgPrice: 14, style: '血糯米', keywords: ['血糯米', '奶茶', '性价比'] }
+        ];
+
+        // 匹配推荐
+        const recommendations = {
+            '18以下': {
+                '男': {
+                    '学生': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '茶百道'], '差钱咋滴': ['蜜雪冰城', '沪上阿姨'] }},
+                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '喜茶'], '差钱咋滴': ['CoCo都可', '一点点'] }},
+                    '上班族': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶百道', '古茗'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋滴': ['古茗'] }},
+                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['乐乐茶', '喜茶'], '差钱咋滴': ['沪上阿姨'] }},
+                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '乐乐茶'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
+                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋滴': ['古茗'] }}
+                },
+                '女': {
+                    '学生': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋滴': ['沪上阿姨', '书亦烧仙草'] }},
+                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '茶百道'], '差钱咋滴': ['一点点'] }},
+                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '古茗'], '差钱咋滴': ['CoCo都可'] }},
+                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋滴': ['古茗'] }},
+                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['乐乐茶', '喜茶'], '差钱咋滴': ['沪上阿姨'] }},
+                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
+                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋滴': ['古茗'] }}
+                },
+                '其他': {
+                    '学生': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '茶百道'], '差钱咋滴': ['沪上阿姨'] }},
+                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '喜茶'], '差钱咋滴': ['一点点'] }},
+                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '古茗'], '差钱咋滴': ['CoCo都可'] }},
+                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋滴': ['古茗'] }},
+                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['乐乐茶', '喜茶'], '差钱咋滴': ['沪上阿姨'] }},
+                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
+                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋滴': ['古茗'] }}
+                }
             },
-            '奈雪的茶': {
-                name: '奈雪的茶',
-                icon: '奈',
-                price: '25-35元',
-                priceLevel: 'luxury',
-                tags: ['高端', '软欧包', '果茶'],
-                styles: ['sweet', 'fruit', 'milk'],
-                description: '茶饮+软欧包开创者，适合下午茶场景',
-                products: [
-                    { name: '霸气橙子', price: '28元', tags: ['sweet', 'fruit'], note: '招牌果茶' },
-                    { name: '霸气芝士草莓', price: '32元', tags: ['sweet', 'fruit', 'milk'], note: '季节限定' },
-                    { name: '宝藏茶', price: '26元', tags: ['sweet', 'milk'], note: '可选无乳糖' },
-                    { name: '金色山脉', price: '24元', tags: ['tea', 'milk'], note: '茶香浓郁' }
-                ]
+            '18-25': {
+                '男': {
+                    '学生': { budget: { '差钱': ['蜜雪冰城', '一点点'], '不差钱': ['喜茶', '茶百道', '霸王茶姬'], '差钱咋滴': ['CoCo都可', '古茗'] }},
+                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '喜茶', '一点点'], '差钱咋滴': ['CoCo都可'] }},
+                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '古茗', '霸王茶姬'], '差钱咋滴': ['一点点'] }},
+                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋滴': ['古茗'] }},
+                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['乐乐茶', '喜茶', '奈雪'], '差钱咋滴': ['沪上阿姨'] }},
+                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '乐乐茶'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
+                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }}
+                },
+                '女': {
+                    '学生': { budget: { '差钱': ['蜜雪冰城', '一点点'], '不差钱': ['喜茶', '奈雪', '茶百道'], '差钱咋滴': ['沪上阿姨', '书亦烧仙草'] }},
+                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '茶百道', '喜茶'], '差钱咋滴': ['一点点'] }},
+                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '古茗', '奈雪'], '差钱咋滴': ['CoCo都可'] }},
+                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }},
+                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['乐乐茶', '喜茶', '奈雪'], '差钱咋滴': ['沪上阿姨'] }},
+                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色', '乐乐茶'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬', '奈雪'], '差钱咋滴': ['沪上阿姨'] }},
+                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }}
+                },
+                '其他': {
+                    '学生': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '茶百道'], '差钱咋滴': ['沪上阿姨'] }},
+                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '喜茶'], '差钱咋滴': ['一点点'] }},
+                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '古茗'], '差钱咋滴': ['CoCo都可'] }},
+                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋滴': ['古茗'] }},
+                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['乐乐茶', '喜茶'], '差钱咋滴': ['沪上阿姨'] }},
+                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
+                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋滴': ['古茗'] }}
+                }
             },
-            '霸王茶姬': {
-                name: '霸王茶姬',
-                icon: '霸',
-                price: '15-22元',
-                priceLevel: 'medium',
-                tags: ['原叶鲜奶茶', '健康', '国风'],
-                styles: ['milk', 'tea', 'sweet'],
-                description: '原叶鲜奶茶专家，主打大杯健康茶饮',
-                products: [
-                    { name: '伯牙绝弦', price: '17元', tags: ['milk', 'tea'], note: '招牌必点' },
-                    { name: '花香乌龙', price: '16元', tags: ['tea', 'sweet'], note: '花香浓郁' },
-                    { name: '桂馥兰香', price: '18元', tags: ['tea', 'sweet'], note: '桂花乌龙' },
-                    { name: '青青糯山', price: '19元', tags: ['milk', 'tea'], note: '糯米香' }
-                ]
+            '26-35': {
+                '男': {
+                    '学生': { budget: { '差钱': ['一点点', 'CoCo都可'], '不差钱': ['喜茶', '霸王茶姬', '茶百道'], '差钱咋滴': ['古茗'] }},
+                    '程序员': { budget: { '差钱': ['一点点'], '不差钱': ['霸王茶姬', '喜茶', '奈雪'], '差钱咋滴': ['CoCo都可'] }},
+                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '古茗', '霸王茶姬'], '差钱咋滴': ['一点点'] }},
+                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪', '霸王茶姬'], '差钱咋滴': ['古茗'] }},
+                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['乐乐茶', '喜茶', '奈雪'], '差钱咋滴': ['古茗'] }},
+                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '乐乐茶', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
+                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }}
+                },
+                '女': {
+                    '学生': { budget: { '差钱': ['一点点', '书亦烧仙草'], '不差钱': ['喜茶', '奈雪', '茶百道'], '差钱咋滴': ['沪上阿姨'] }},
+                    '程序员': { budget: { '差钱': ['一点点'], '不差钱': ['霸王茶姬', '茶百道', '喜茶'], '差钱咋滴': ['CoCo都可'] }},
+                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '古茗', '奈雪'], '差钱咋滴': ['一点点'] }},
+                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }},
+                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], 'not差钱': ['乐乐茶', '喜茶', '奈雪'], '差钱咋滴': ['沪上阿姨'] }},
+                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色', '乐乐茶'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬', '奈雪'], '差钱咋滴': ['沪上阿姨'] }},
+                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }}
+                },
+                '其他': {
+                    '学生': { budget: { '差钱': ['一点点'], '不差钱': ['喜茶', '茶百道'], '差钱咋滴': ['古茗'] }},
+                    '程序员': { budget: { '差钱': ['一点点'], '不差钱': ['霸王茶姬', '喜茶'], '差钱咋滴': ['CoCo都可'] }},
+                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '古茗'], '差钱咋滴': ['一点点'] }},
+                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋滴': ['古茗'] }},
+                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['乐乐茶', '喜茶'], '差钱咋滴': ['古茗'] }},
+                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋咋滴': ['沪上阿姨'] }},
+                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋滴': ['古茗'] }}
+                }
             },
-            '古茗': {
-                name: '古茗',
-                icon: '古',
-                price: '12-20元',
-                priceLevel: 'medium',
-                tags: ['水果茶', '新鲜', '性价比'],
-                styles: ['fruit', 'sweet', 'tea'],
-                description: '主打鲜果茶，水果新鲜度高',
-                products: [
-                    { name: '超A芝士葡萄', price: '18元', tags: ['fruit', 'milk'], note: '招牌' },
-                    { name: '杨枝甘露', price: '16元', tags: ['fruit', 'sweet'], note: '经典款' },
-                    { name: '百香双重奏', price: '14元', tags: ['fruit', 'sweet'], note: '清爽' },
-                    { name: '云雾栀子青', price: '15元', tags: ['tea', 'sweet'], note: '季节限定' }
-                ]
+            '36-45': {
+                '男': {
+                    '学生': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['霸王茶姬', '奈雪', '茶颜悦色'], '差钱咋滴': ['古茗'] }},
+                    '程序员': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['霸王茶姬', '奈雪', '茶百道'], '差钱咋滴': ['古茗'] }},
+                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['霸王茶姬', '古茗', '奈雪'], '差钱咋滴': ['一点点'] }},
+                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪', '霸王茶姬'], '差钱咋滴': ['古茗'] }},
+                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '乐乐茶', '霸王茶姬'], '差钱咋滴': ['古茗'] }},
+                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬', '奈雪'], '差钱咋滴': ['沪上阿姨'] }},
+                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }}
+                },
+                '女': {
+                    '学生': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['奈雪', '茶颜悦色', '茶百道'], '差钱咋滴': ['沪上阿姨'] }},
+                    '程序员': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['霸王茶姬', '奈雪', '茶百道'], '差钱咋滴': ['古茗'] }},
+                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['奈雪', '茶百道', '古茗'], '差钱咋滴': ['一点点'] }},
+                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }},
+                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '乐乐茶', '茶颜悦色'], '差钱咋滴': ['沪上阿姨'] }},
+                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色', '乐乐茶'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '奈雪', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
+                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }}
+                },
+                '其他': {
+                    '学生': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['古茗'] }},
+                    '程序员': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['霸王茶姬', '奈雪'], '差钱咋滴': ['古茗'] }},
+                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['霸王茶姬', '古茗'], '差钱咋滴': ['一点点'] }},
+                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋滴': ['古茗'] }},
+                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '乐乐茶'], '差钱咋滴': ['沪上阿姨'] }},
+                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
+                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋滴': ['古茗'] }}
+                }
             },
-            '书亦烧仙草': {
-                name: '书亦烧仙草',
-                icon: '书',
-                price: '10-18元',
-                priceLevel: 'low',
-                tags: ['烧仙草', '料多', '性价比'],
-                styles: ['sweet', 'milk', 'tea'],
-                description: '烧仙草品类开创者，料多实惠',
-                products: [
-                    { name: '书亦烧仙草', price: '12元', tags: ['sweet', 'milk'], note: '招牌必点' },
-                    { name: '黄金珍珠奶茶', price: '14元', tags: ['milk', 'sweet'], note: '经典款' },
-                    { name: '椰椰烧仙草', price: '15元', tags: ['sweet', 'milk'], note: '可选不加糖' },
-                    { name: '刺梨白月光', price: '16元', tags: ['fruit', 'sweet'], note: '清爽解腻' }
-                ]
-            },
-            '茶百道': {
-                name: '茶百道',
-                icon: '茶',
-                price: '12-20元',
-                priceLevel: 'medium',
-                tags: ['杨枝甘露', '稳定', '门店多'],
-                styles: ['fruit', 'milk', 'sweet'],
-                description: '经典老牌，品控稳定，杨枝甘露成名',
-                products: [
-                    { name: '杨枝甘露', price: '16元', tags: ['fruit', 'sweet'], note: '招牌必点' },
-                    { name: '豆乳玉麒麟', price: '17元', tags: ['milk', 'sweet'], note: '豆香浓郁' },
-                    { name: '超厚芋泥', price: '18元', tags: ['sweet', 'milk'], note: '料超多' },
-                    { name: '茉莉奶绿', price: '13元', tags: ['milk', 'tea'], note: '清爽不腻' }
-                ]
-            },
-            'CoCo都可': {
-                name: 'CoCo都可',
-                icon: 'Co',
-                price: '12-22元',
-                priceLevel: 'medium',
-                tags: ['老牌', '稳定', '隐藏菜单'],
-                styles: ['milk', 'sweet', 'fruit', 'coffee'],
-                description: '老牌连锁，饮品稳定，隐藏菜单丰富',
-                products: [
-                    { name: '百香双响炮', price: '16元', tags: ['fruit', 'sweet'], note: '招牌必点' },
-                    { name: '芒果欧蕾', price: '18元', tags: ['fruit', 'milk'], note: '经典款' },
-                    { name: '珍珠奶茶', price: '14元', tags: ['milk', 'sweet'], note: '经典款' },
-                    { name: '鲜芋牛奶西米露', price: '17元', tags: ['milk', 'sweet'], note: '料多' }
-                ]
-            },
-            '一点点': {
-                name: '一点点',
-                icon: '1',
-                price: '12-20元',
-                priceLevel: 'medium',
-                tags: ['隐藏菜单', '自由搭配', '老牌'],
-                styles: ['milk', 'sweet', 'tea', 'coffee'],
-                description: '隐藏菜单之王，可自由搭配加料',
-                products: [
-                    { name: '波霸奶茶', price: '14元', tags: ['milk', 'sweet'], note: '招牌必点' },
-                    { name: '四季春茶', price: '12元', tags: ['tea', 'sweet'], note: '清爽' },
-                    { name: '冰淇淋红茶', price: '16元', tags: ['milk', 'sweet'], note: '隐藏网红' },
-                    { name: '玛奇朵系列', price: '15元', tags: ['milk', 'coffee'], note: '可自由搭配' }
-                ]
-            },
-            '蜜雪冰城': {
-                name: '蜜雪冰城',
-                icon: '雪',
-                price: '4-10元',
-                priceLevel: 'low',
-                tags: ['低价', '门店王', '雪王'],
-                styles: ['sweet', 'milk', 'fruit', 'tea'],
-                description: '中国门店数量第一，性价比之王，"雪王"IP深入人心',
-                products: [
-                    { name: '冰鲜柠檬水', price: '4元', tags: ['fruit', 'sweet'], note: '招牌必点' },
-                    { name: '蜜桃四季春', price: '8元', tags: ['fruit', 'sweet'], note: '清爽解腻' },
-                    { name: '摇摇奶昔', price: '6元', tags: ['milk', 'sweet'], note: '香浓可口' },
-                    { name: '芝士奶盖四季春', price: '9元', tags: ['milk', 'tea'], note: '超高性价比' }
-                ]
-            },
-            '茶颜悦色': {
-                name: '茶颜悦色',
-                icon: '颜',
-                price: '15-22元',
-                priceLevel: 'medium',
-                tags: ['国风', '湖南', '顶流'],
-                styles: ['tea', 'milk', 'sweet'],
-                description: '国风茶饮始祖，湖南本土顶流，服务细节著称',
-                products: [
-                    { name: '幽兰拿铁', price: '16元', tags: ['milk', 'sweet'], note: '招牌必点' },
-                    { name: '声声乌龙', price: '15元', tags: ['tea', 'sweet'], note: '清爽茶香' },
-                    { name: '桂花弄', price: '15元', tags: ['tea', 'sweet'], note: '桂花乌龙' },
-                    { name: '筝筝纸鸢', price: '17元', tags: ['milk', 'tea'], note: '人气款' }
-                ]
-            },
-            '乐乐茶': {
-                name: '乐乐茶',
-                icon: '乐',
-                price: '20-30元',
-                priceLevel: 'high',
-                tags: ['高端', '果茶', '软欧包'],
-                styles: ['fruit', 'sweet', 'milk'],
-                description: '与喜茶、奈雪齐名，果茶+软欧包模式',
-                products: [
-                    { name: '芒果酪酪', price: '26元', tags: ['fruit', 'milk'], note: '招牌必点' },
-                    { name: '草莓酪酪', price: '28元', tags: ['fruit', 'milk'], note: '季节限定' },
-                    { name: '杨枝甘露', price: '24元', tags: ['fruit', 'sweet'], note: '经典款' },
-                    { name: '酒酿桂花', price: '22元', tags: ['tea', 'sweet'], note: '国风新品' }
-                ]
-            },
-            '沪上阿姨': {
-                name: '沪上阿姨',
-                icon: '沪',
-                price: '12-20元',
-                priceLevel: 'medium',
-                tags: ['上海', '血糯米', '本地'],
-                styles: ['milk', 'sweet', 'fruit', 'tea'],
-                description: '上海本土品牌，血糯米奶茶成名，华东区域强势',
-                products: [
-                    { name: '血糯米奶茶', price: '14元', tags: ['milk', 'sweet'], note: '招牌必点' },
-                    { name: '杨枝甘露', price: '16元', tags: ['fruit', 'sweet'], note: '经典款' },
-                    { name: '手剥葡萄', price: '18元', tags: ['fruit', 'sweet'], note: '鲜果茶' },
-                    { name: '郁郁青提', price: '17元', tags: ['fruit', 'tea'], note: '清爽新品' }
-                ]
+            '45以上': {
+                '男': {
+                    '学生': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '茶颜悦色'], '差钱咋滴': ['沪上阿姨'] }},
+                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '奈雪'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '上班族': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '古茗'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪', '霸王茶姬'], '差钱咋滴': ['古茗'] }},
+                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬', '奈雪'], '差钱咋滴': ['沪上阿姨'] }},
+                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪', '茶颜悦色'], '差钱咋滴': ['古茗'] }}
+                },
+                '女': {
+                    '学生': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['沪上阿姨'] }},
+                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '奈雪'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '上班族': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '奈雪', '古茗'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪', '霸王茶姬'], '差钱咋滴': ['古茗'] }},
+                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色', '乐乐茶'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '奈雪', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
+                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪', '茶颜悦色'], '差钱咋滴': ['古茗'] }}
+                },
+                '其他': {
+                    '学生': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '奈雪'], '差钱咋滴': ['沪上阿姨'] }},
+                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '奈雪'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '上班族': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '古茗'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋滴': ['古茗'] }},
+                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
+                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
+                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋滴': ['古茗'] }}
+                }
             }
         };
 
-        // 匹配逻辑
-        function matchTea() {
-            // 验证必填项
-            const age = document.querySelector('input[name="age"]:checked');
-            const job = document.querySelector('input[name="job"]:checked');
-            const tastes = document.querySelectorAll('input[name="taste"]:checked');
-            const price = document.querySelector('input[name="price"]:checked');
-            const scenes = document.querySelectorAll('input[name="scene"]:checked');
+        // 饮品推荐
+        const drinkRecommendations = {
+            '喜茶': ['多肉葡萄', '芝芝莓莓', '烤黑糖波波', '芝芝绿妍'],
+            '奈雪的茶': ['霸气橙子', '霸气芝士草莓', '宝藏茶', '软欧包'],
+            '霸王茶姬': ['伯牙绝弦', '桂馥兰香', '青青糯山', '白雾红尘'],
+            '古茗': ['杨枝甘露', '超A芝士葡萄', '百香双重奏', '云雾栀子'],
+            '书亦烧仙草': ['书亦烧仙草', '橙漫山茶花', '小吊梨汤', '金银老白茶'],
+            '茶百道': ['杨枝甘露', '芒果糯米饭', '豆乳玉麒麟', '铁观音奶霸'],
+            'CoCo都可': ['百香双响炮', '芒果欧蕾', '珍珠奶茶', '鲜芋牛奶西米露'],
+            '一点点': ['波霸奶茶', '四季春茶', '冰淇淋红茶', '隐藏菜单'],
+            '蜜雪冰城': ['冰鲜柠檬水', '蜜桃四季春', '冰淇淋', '摇摇奶昔'],
+            '茶颜悦色': ['幽兰拿铁', '声声乌龙', '桂花弄', '筝筝纸鸢'],
+            '乐乐茶': ['酪酪草莓', '芒果酪酪', '脏脏茶', '软欧包'],
+            '沪上阿姨': ['血糯米奶茶', '杨枝甘露', '鲜奶麻薯', '桂花酒酿']
+        };
 
-            if (!age || !job || tastes.length === 0 || !price || scenes.length === 0) {
-                alert('请完善必填信息！\n\n必填项：\n- 年龄段\n- 职业\n- 口味偏好（至少选一个）\n- 预算区间\n- 饮用场景（至少选一个）');
-                return;
-            }
-
-            // 显示加载
-            document.getElementById('loading').style.display = 'block';
-            document.getElementById('result').style.display = 'none';
-
-            // 模拟分析延迟
-            setTimeout(() => {
-                calculateMatch();
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('result').style.display = 'block';
-
-                // 滚动到结果
-                document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
-            }, 1500);
+        // 匹配度计算
+        function calculateMatchScore() {
+            let score = 70 + Math.floor(Math.random() * 25);
+            return score;
         }
 
-        function calculateMatch() {
-            // 获取用户选择
-            const userAge = document.querySelector('input[name="age"]:checked').value;
-            const userJob = document.querySelector('input[name="job"]:checked').value;
-            const userTastes = Array.from(document.querySelectorAll('input[name="taste"]:checked')).map(c => c.value);
-            const userBrands = Array.from(document.querySelectorAll('input[name="brand"]:checked')).map(c => c.value);
-            const userPrice = document.querySelector('input[name="price"]:checked').value;
-            const userScenes = Array.from(document.querySelectorAll('input[name="scene"]:checked')).map(c => c.value);
-            const userHealth = Array.from(document.querySelectorAll('input[name="health"]:checked')).map(c => c.value);
+        // 获取推荐结果
+        function getRecommendations() {
+            const ageData = recommendations[userData.age] || recommendations['18-25'];
+            const genderData = ageData[userData.gender] || ageData['其他'];
+            const occupationData = genderData[userData.occupation] || genderData['上班族'];
+            const budgetData = occupationData.budget || occupationData['不差钱'];
 
-            // 筛选品牌
-            let matchedBrands = [];
-
-            // 价格区间映射
-            const priceMap = { 'low': [0, 15], 'medium': [10, 22], 'high': [18, 35], 'luxury': [25, 50] };
-            const priceRange = priceMap[userPrice];
-
-            // 获取所有品牌
-            let allBrands = Object.keys(brandsData);
-
-            // 如果用户指定了品牌，优先这些品牌
-            if (userBrands.length > 0) {
-                allBrands = userBrands.filter(b => brandsData[b]);
-            }
-
-            // 计算每个品牌的匹配度
-            for (const brandName of allBrands) {
-                const brand = brandsData[brandName];
-                let score = 0;
-                let reasons = [];
-
-                // 口味匹配 (30分)
-                const tasteMatch = brand.styles.filter(s => userTastes.includes(s)).length;
-                score += (tasteMatch / Math.max(brand.styles.length, 1)) * 30;
-                if (tasteMatch > 0) {
-                    reasons.push('口味匹配');
-                }
-
-                // 价格匹配 (25分)
-                const brandPriceNum = parseInt(brand.price.split('-')[0]);
-                if (brandPriceNum >= priceRange[0] && brandPriceNum <= priceRange[1]) {
-                    score += 25;
-                    reasons.push('价格合适');
-                } else if (Math.abs(brandPriceNum - priceRange[0]) <= 5) {
-                    score += 15;
-                    reasons.push('价格接近');
-                }
-
-                // 职业/场景匹配 (20分)
-                if (userJob === 'student' && ['书亦烧仙草', '蜜雪冰城'].includes(brandName)) {
-                    score += 15;
-                    reasons.push('学生党首选');
-                }
-                if (userJob === 'office' && ['喜茶', '奈雪的茶', '霸王茶姬', '茶颜悦色'].includes(brandName)) {
-                    score += 15;
-                    reasons.push('上班族的日常');
-                }
-                if (userScenes.includes('photo') && ['喜茶', '奈雪的茶', '乐乐茶', '茶颜悦色'].includes(brandName)) {
-                    score += 10;
-                    reasons.push('拍照好看');
-                }
-                if (userScenes.includes('party') && ['书亦烧仙草', '茶百道', '蜜雪冰城', '沪上阿姨'].includes(brandName)) {
-                    score += 10;
-                    reasons.push('聚会性价比高');
-                }
-
-                // 年龄匹配 (15分)
-                if (userAge === 'teen' || userAge === 'student') {
-                    if (['书亦烧仙草', '一点点', '蜜雪冰城'].includes(brandName)) {
-                        score += 10;
-                        reasons.push('年轻人都爱');
-                    }
-                } else if (userAge === 'young' || userAge === 'middle') {
-                    if (['喜茶', '奈雪的茶', '霸王茶姬', '茶颜悦色', '乐乐茶'].includes(brandName)) {
-                        score += 10;
-                        reasons.push('品质之选');
-                    }
-                }
-
-                // 身体状况匹配 (10分)
-                if (userHealth.includes('lactose')) {
-                    // 乳糖不耐受标记
-                    if (!brand.products.some(p => p.tags.includes('milk'))) {
-                        score += 5;
-                        reasons.push('可选非奶类');
-                    }
-                }
-                if (userHealth.includes('sugar')) {
-                    if (brand.products.some(p => p.note && p.note.includes('无糖'))) {
-                        score += 5;
-                        reasons.push('可做无糖');
-                    }
-                }
-                if (userHealth.includes('insomnia')) {
-                    if (brand.products.some(p => p.tags.includes('tea') && !p.tags.includes('coffee'))) {
-                        score += 5;
-                        reasons.push('可选择茶类');
-                    }
-                }
-
-                matchedBrands.push({
-                    name: brandName,
-                    score: Math.min(Math.round(score), 100),
-                    reasons: reasons,
-                    data: brand
-                });
-            }
-
-            // 按匹配度排序，取前3
-            matchedBrands.sort((a, b) => b.score - a.score);
-            const topBrands = matchedBrands.slice(0, 3);
-
-            // 计算总匹配度
-            const totalScore = Math.round(topBrands.reduce((sum, b) => sum + b.score, 0) / topBrands.length);
-
-            // 渲染结果
-            renderResult(topBrands, totalScore, userHealth);
+            return budgetData[userData.budget] || budgetData['不差钱'] || ['喜茶'];
         }
 
-        function renderResult(brands, totalScore, health) {
-            // 更新总分
-            document.getElementById('totalScore').textContent = totalScore + '%';
-
-            // 动画进度条
-            setTimeout(() => {
-                document.getElementById('scoreBar').style.width = totalScore + '%';
-            }, 100);
-
-            // 渲染品牌
-            const container = document.getElementById('brandsContainer');
-            container.innerHTML = '';
-
-            brands.forEach((brand, index) => {
-                // 筛选推荐单品
-                let products = brand.data.products.slice(0, 2);
-
-                // 根据身体状况过滤
-                if (health.includes('lactose') || health.includes('sugar') || health.includes('insomnia')) {
-                    // 保留符合条件的产品在前
-                    const filtered = products.filter(p => {
-                        if (health.includes('lactose') && p.tags.includes('milk')) return false;
-                        return true;
-                    });
-                    if (filtered.length > 0) {
-                        products = filtered;
-                    }
-                }
-
-                const productCards = products.map(p => `
-                    <div class="product-card">
-                        <div class="product-name">${p.name}</div>
-                        <div class="product-tags">
-                            ${p.tags.map(t => `<span class="product-tag ${t}">${getTagName(t)}</span>`).join('')}
-                        </div>
-                        <div class="product-price">${p.price}</div>
-                        ${p.note ? `<div class="product-note">💡 ${p.note}</div>` : ''}
-                    </div>
-                `).join('');
-
-                // 计算稀有度
-                let rarity = 'R';
-                let rarityText = '普通';
-                if (brand.score >= 90) { rarity = 'SSR'; rarityText = '传说'; }
-                else if (brand.score >= 75) { rarity = 'SR'; rarityText = '稀有'; }
-
-                const brandCard = `
-                    <div class="brand-section pull-animation" style="animation-delay: ${index * 0.15}s">
-                        <div class="brand-card">
-                            <div class="brand-header">
-                                <div class="brand-name">
-                                    <span class="rarity ${rarity}">${rarityText}</span>
-                                    <div class="brand-icon">${brand.data.icon}</div>
-                                    <span class="brand-title">${brand.name}</span>
-                                </div>
-                                <span class="brand-price">${brand.data.price}</span>
-                            </div>
-                            <div class="brand-reason">${brand.reasons.join(' · ')}</div>
-                            <div class="products">
-                                ${productCards}
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                container.insertAdjacentHTML('beforeend', brandCard);
-            });
-        }
-
-        function getTagName(tag) {
-            const names = {
-                'sweet': '甜',
-                'milk': '奶',
-                'tea': '茶',
-                'fruit': '果',
-                'coffee': '咖啡'
+        // 获取推荐理由
+        function getReason(brand) {
+            const reasons = {
+                '喜茶': '高端创新品牌，适合追求新鲜口感的你',
+                '奈雪的茶': '茶+软欧包组合，适合下午茶时光',
+                '霸王茶姬': '原叶鲜奶茶，健康又好喝',
+                '古茗': '水果茶专家，清爽解腻',
+                '书亦烧仙草': '经典草本风味，老少皆宜',
+                '茶百道': '性价比高，热门单品多',
+                'CoCo都可': '经典款式，品质稳定',
+                '一点点': '隐藏菜单丰富，可玩性高',
+                '蜜雪冰城': '性价比之王，学生党首选',
+                '茶颜悦色': '茶味浓郁，中国风设计',
+                '乐乐茶': '软欧包+茶饮，颜值担当',
+                '沪上阿姨': '血糯米特色，温暖牌
             };
-            return names[tag] || tag;
+            return reasons[brand] || '适合你的选择';
         }
 
-        // 等级系统
-        const levelData = [
-            { min: 0, title: '萌新奶茶师', badge: '1', color: '#87CEEB' },
-            { min: 20, title: '初级品鉴师', badge: '2', color: '#98FB98' },
-            { min: 40, title: '奶茶爱好者', badge: '3', color: '#FFD700' },
-            { min: 60, title: '资深喝货', badge: '4', color: '#FFA500' },
-            { min: 80, title: '奶茶达人', badge: '5', color: '#FF69B4' },
-            { min: 90, title: '奶茶大师', badge: 'SSR', color: '#DDA0DD' }
-        ];
-
-        function updateUserLevel(score) {
-            let currentLevel = levelData[0];
-            for (let i = levelData.length - 1; i >= 0; i--) {
-                if (score >= levelData[i].min) {
-                    currentLevel = levelData[i];
-                    break;
-                }
-            }
-
-            const levelBadge = document.getElementById('levelBadge');
-            const userTitle = document.getElementById('userTitle');
-            const levelDesc = document.getElementById('levelDesc');
-
-            levelBadge.textContent = currentLevel.badge;
-            levelBadge.style.background = currentLevel.color;
-            userTitle.textContent = currentLevel.title;
-            levelDesc.textContent = `当前等级: ${currentLevel.title} (匹配度 ${score}%)`;
+        // 开始测试
+        function startQuiz() {
+            document.getElementById('hero').style.display = 'none';
+            document.getElementById('progressBar').style.display = 'flex';
+            showStep(1);
         }
 
-        // 成就系统
-        function unlockAchievement(ids) {
-            ids.forEach(id => {
-                const el = document.querySelector(`.achievement[data-id="${id}"]`);
-                if (el) {
-                    el.classList.add('unlocked');
-                }
+        // 显示步骤
+        function showStep(step) {
+            document.querySelectorAll('.step-card').forEach(card => card.style.display = 'none');
+            document.getElementById('step' + step).style.display = 'block';
+
+            // 更新进度
+            document.querySelectorAll('.progress-dot').forEach((dot, index) => {
+                dot.classList.remove('active', 'completed');
+                if (index + 1 < step) dot.classList.add('completed');
+                if (index + 1 === step) dot.classList.add('active');
             });
         }
 
-        function checkAchievements(score, tastes, scenes) {
-            const unlocked = ['first'];
-            if (tastes.includes('sweet')) unlocked.push('sweet');
-            if (tastes.includes('milk')) unlocked.push('milk');
-            if (tastes.includes('fruit')) unlocked.push('fruit');
-            if (tastes.includes('tea')) unlocked.push('tea');
-            if (score >= 80) unlocked.push('high-score');
-            unlockAchievement(unlocked);
+        // 选择选项
+        function selectOption(step, element) {
+            // 清除同步骤的其他选中
+            document.querySelectorAll('#step' + step + ' .option-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+
+            // 选中当前
+            element.classList.add('selected');
+
+            // 保存数据
+            const value = element.getAttribute('data-value');
+            const stepNames = ['age', 'gender', 'occupation', 'budget'];
+            userData[stepNames[step - 1]] = value;
+
+            // 启用下一步按钮
+            document.getElementById('btn' + step).disabled = false;
         }
 
-        // 截图功能
-        function takeScreenshot() {
-            const resultCard = document.getElementById('result');
-            html2canvas(resultCard, {
-                backgroundColor: '#FFF9F0',
-                scale: 2
-            }).then(canvas => {
+        // 下一步
+        function nextStep(currentStep) {
+            if (currentStep < 4) {
+                showStep(currentStep + 1);
+            }
+        }
+
+        // 上一步
+        function goBack(currentStep) {
+            if (currentStep > 1) {
+                showStep(currentStep - 1);
+            } else {
+                document.getElementById('hero').style.display = 'block';
+                document.getElementById('progressBar').style.display = 'none';
+                document.querySelectorAll('.step-card').forEach(card => card.style.display = 'none');
+            }
+        }
+
+        // 显示结果
+        function showResult() {
+            document.querySelectorAll('.step-card').forEach(card => card.style.display = 'none');
+            document.getElementById('progressBar').style.display = 'none';
+            document.getElementById('resultSection').classList.add('show');
+
+            // 初始化刮刮卡
+            initScratchCard();
+        }
+
+        // 初始化刮刮卡
+        function initScratchCard() {
+            const scratchCard = document.getElementById('scratchCard');
+            const scratchCover = document.getElementById('scratchCover');
+            const scratchResult = document.getElementById('scratchResult');
+
+            // 获取推荐
+            const recommendedBrands = getRecommendations();
+            const mainBrand = recommendedBrands[0];
+            const matchScore = calculateMatchScore();
+
+            // 显示结果数据
+            document.getElementById('resultBrand').textContent = mainBrand;
+            document.getElementById('resultDrink').textContent = (drinkRecommendations[mainBrand] || ['经典奶茶']).slice(0, 2).join(' / ');
+            document.getElementById('resultReason').textContent = getReason(mainBrand);
+
+            // 显示更多推荐
+            const resultList = document.getElementById('resultList');
+            resultList.innerHTML = '';
+            recommendedBrands.slice(1).forEach((brand, index) => {
+                const item = document.createElement('div');
+                item.className = 'result-item';
+                item.innerHTML = `
+                    <span class="rank">${index + 2}</span>
+                    <span class="brand">${brand}</span>
+                    <div class="drinks">${(drinkRecommendations[brand] || ['经典奶茶']).slice(0, 2).join(' / ')}</div>
+                `;
+                resultList.appendChild(item);
+            });
+
+            // 刮刮卡效果
+            let scratched = false;
+
+            function handleScratch() {
+                if (scratched) return;
+                scratched = true;
+
+                scratchCover.classList.add('hidden');
+                scratchResult.style.display = 'block';
+
+                // 数字滚动效果
+                let current = 0;
+                const target = matchScore;
+                const duration = 1500;
+                const start = Date.now();
+
+                function animate() {
+                    const elapsed = Date.now() - start;
+                    const progress = Math.min(elapsed / duration, 1);
+
+                    // 缓动函数
+                    const easeOut = 1 - Math.pow(1 - progress, 3);
+                    current = Math.floor(easeOut * target);
+
+                    document.getElementById('matchScore').textContent = current + '%';
+
+                    if (progress < 1) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        // 显示完整结果
+                        document.getElementById('resultDetail').style.display = 'block';
+                        document.getElementById('shareSection').style.display = 'flex';
+                        scratchCard.classList.add('scratched');
+                    }
+                }
+
+                setTimeout(() => {
+                    animate();
+                }, 300);
+            }
+
+            // 点击刮开
+            scratchCard.addEventListener('click', handleScratch);
+
+            // 触摸刮开（移动端）
+            scratchCard.addEventListener('touchstart', handleScratch);
+        }
+
+        // 截图保存
+        async function screenshot() {
+            const resultSection = document.getElementById('resultSection');
+
+            try {
+                // 创建截图区域副本
+                const clone = resultSection.cloneNode(true);
+                clone.style.position = 'absolute';
+                clone.style.left = '-9999px';
+                clone.style.background = '#FFFFFF';
+                clone.style.padding = '20px';
+                document.body.appendChild(clone);
+
+                // 隐藏不需要的元素
+                const retryBtn = clone.querySelector('.retry-section');
+                const shareSection = clone.querySelector('.share-section');
+                if (retryBtn) retryBtn.style.display = 'none';
+                if (shareSection) shareSection.style.display = 'none';
+
+                const canvas = await html2canvas(clone, {
+                    backgroundColor: '#FFFFFF',
+                    scale: 2,
+                    useCORS: true
+                });
+
+                document.body.removeChild(clone);
+
+                // 下载图片
                 const link = document.createElement('a');
-                link.download = `奶茶匹配结果_${new Date().getTime()}.png`;
+                link.download = '奶茶匹配结果.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
-            });
+
+                alert('图片已保存！');
+            } catch (e) {
+                console.error('截图失败:', e);
+                alert('截图失败，请重试');
+            }
         }
 
         // 复制结果
         function copyResult() {
-            const score = document.getElementById('totalScore').textContent;
-            const brands = document.querySelectorAll('.brand-title');
-            let text = `🧋 奶茶匹配大师结果 🧋\n`;
-            text += `综合匹配度: ${score}\n\n`;
-            text += `推荐品牌:\n`;
-            brands.forEach((brand, i) => {
-                text += `${i + 1}. ${brand.textContent}\n`;
-            });
-            text += `\n快来测试你的奶茶属性吧！`;
+            const recommendedBrands = getRecommendations();
+            const mainBrand = recommendedBrands[0];
+            const matchScore = calculateMatchScore();
+            const drinks = (drinkRecommendations[mainBrand] || ['经典奶茶']).slice(0, 2).join(' / ');
+
+            const text = `🧋 奶茶匹配结果\n\n` +
+                `🎯 匹配度: ${matchScore}%\n` +
+                `📍 推荐品牌: ${mainBrand}\n` +
+                `🥤 推荐饮品: ${drinks}\n` +
+                `💡 ${getReason(mainBrand)}\n\n` +
+                `快来测试你的奶茶缘分吧！`;
 
             navigator.clipboard.writeText(text).then(() => {
-                alert('✅ 结果已复制到剪贴板！');
+                alert('结果已复制到剪贴板！');
+            }).catch(() => {
+                alert('复制失败，请重试');
             });
         }
 
-        // 下载报告
-        function downloadResult() {
-            const resultCard = document.getElementById('result');
-            html2canvas(resultCard, {
-                backgroundColor: '#FFF9F0',
-                scale: 2
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `奶茶匹配报告_${new Date().getTime()}.png`;
-                link.href = canvas.toDataURL('image/png');
-                link.click();
+        // 重新测试
+        function resetQuiz() {
+            // 重置数据
+            userData.age = '';
+            userData.gender = '';
+            userData.occupation = '';
+            userData.budget = '';
+
+            // 清除选择状态
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('selected');
             });
+
+            // 禁用所有按钮
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById('btn' + i).disabled = true;
+            }
+
+            // 重置显示
+            document.getElementById('resultSection').classList.remove('show');
+            document.getElementById('scratchCover').classList.remove('hidden');
+            document.getElementById('scratchResult').style.display = 'none';
+            document.getElementById('resultDetail').style.display = 'none';
+            document.getElementById('shareSection').style.display = 'none';
+            document.getElementById('scratchCard').classList.remove('scratched');
+
+            // 显示首页
+            document.getElementById('hero').style.display = 'block';
+            document.getElementById('progressBar').style.display = 'none';
+            document.querySelectorAll('.step-card').forEach(card => card.style.display = 'none');
         }
-
-        // 更新匹配结果调用
-        const originalRenderResult = renderResult;
-        renderResult = function(brands, totalScore, health) {
-            // 更新等级
-            updateUserLevel(totalScore);
-
-            // 检查成就
-            const userTastes = Array.from(document.querySelectorAll('input[name="taste"]:checked')).map(c => c.value);
-            const userScenes = Array.from(document.querySelectorAll('input[name="scene"]:checked')).map(c => c.value);
-            checkAchievements(totalScore, userTastes, userScenes);
-
-            // 调用原始渲染
-            originalRenderResult(brands, totalScore, health);
-        };
     </script>
 </body>
 </html>
