@@ -9,123 +9,123 @@
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
         :root {
-            /* 彩虹配色 */
-            --rainbow-red: #FF0018;
-            --rainbow-orange: #FFA52C;
-            --rainbow-yellow: #FFFF41;
-            --rainbow-green: #008018;
-            --rainbow-blue: #0000F9;
-            --rainbow-purple: #86007D;
-
-            --bg: #FAFAFA;
-            --bg-card: #FFFFFF;
-            --text: #1A1A1A;
+            /* 霸王茶姬风格 - 清新雅致 */
+            --tea-green: #2D5A3D;
+            --tea-green-light: #4A7C59;
+            --tea-green-pale: #E8F0EA;
+            --gold: #C9A962;
+            --gold-light: #E8D9B5;
+            --cream: #FAF8F5;
+            --white: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --text: #333333;
             --text-secondary: #666666;
-            --text-tertiary: #999999;
-            --border: #E5E5E5;
-            --border-hover: #CCCCCC;
-            --accent: var(--rainbow-purple);
-            --accent-light: #FFF0F5;
-            --shadow: 0 1px 2px rgba(0,0,0,0.04);
-            --radius: 6px;
+            --text-light: #999999;
+            --border: #E5E5E0;
+            --border-light: #F0F0EB;
+            --shadow: 0 2px 8px rgba(45, 90, 61, 0.08);
+            --shadow-hover: 0 4px 16px rgba(45, 90, 61, 0.15);
+            --radius: 8px;
+            --radius-lg: 12px;
         }
 
-        /* 彩虹渐变背景 */
+        /* 清新淡雅背景 */
         body {
-            background: linear-gradient(135deg,
-                rgba(255,0,24,0.05) 0%,
-                rgba(255,165,44,0.05) 20%,
-                rgba(255,255,65,0.05) 40%,
-                rgba(0,128,24,0.05) 60%,
-                rgba(0,0,249,0.05) 80%,
-                rgba(134,0,125,0.05) 100%);
+            background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
             min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
         }
 
         header {
-            background: var(--bg-card);
-            border-bottom: 3px solid;
-            border-image: linear-gradient(90deg,
-                var(--rainbow-red),
-                var(--rainbow-orange),
-                var(--rainbow-yellow),
-                var(--rainbow-green),
-                var(--rainbow-blue),
-                var(--rainbow-purple)) 1;
-            padding: 16px 24px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border-light);
+            padding: 20px 24px;
             text-align: center;
+            box-shadow: var(--shadow);
         }
 
         header h1 {
-            font-size: 18px;
-            font-weight: 800;
-            letter-spacing: 3px;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            color: var(--tea-green);
             text-transform: uppercase;
-            background: linear-gradient(90deg,
-                var(--rainbow-red),
-                var(--rainbow-orange),
-                var(--rainbow-yellow),
-                var(--rainbow-green),
-                var(--rainbow-blue),
-                var(--rainbow-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
+        /* 进度条 */
         .progress-dot.active {
-            background: linear-gradient(90deg,
-                var(--rainbow-red),
-                var(--rainbow-orange),
-                var(--rainbow-yellow),
-                var(--rainbow-green),
-                var(--rainbow-blue),
-                var(--rainbow-purple));
+            background: var(--tea-green);
+        }
+
+        /* 选项卡片 */
+        .option {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px 28px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--text);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option:hover {
+            border-color: var(--tea-green-light);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            background: var(--tea-green-pale);
         }
 
         .option.selected {
-            background: linear-gradient(135deg,
-                rgba(255,0,24,0.1),
-                rgba(134,0,125,0.1));
-            border-color: var(--rainbow-purple);
-            color: var(--rainbow-purple);
-        }
-
-        .btn-primary {
-            background: linear-gradient(90deg,
-                var(--rainbow-red),
-                var(--rainbow-orange),
-                var(--rainbow-yellow),
-                var(--rainbow-green),
-                var(--rainbow-blue),
-                var(--rainbow-purple));
-            color: white;
+            background: linear-gradient(135deg, var(--tea-green-pale) 0%, var(--white) 100%);
+            border-color: var(--tea-green);
+            border-width: 2px;
+            color: var(--tea-green);
             font-weight: 600;
+            box-shadow: var(--shadow-hover);
         }
 
+        /* 按钮 */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--tea-green) 0%, var(--tea-green-light) 100%);
+            color: white;
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 12px rgba(45, 90, 61, 0.3);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.95;
+            box-shadow: 0 6px 20px rgba(45, 90, 61, 0.4);
+            transform: translateY(-1px);
+        }
+
+        /* 结果卡片 */
         .result-card:first-child {
-            border-color: var(--rainbow-purple);
-            border-width: 3px;
-            background: linear-gradient(135deg,
-                rgba(255,0,24,0.03),
-                rgba(255,165,44,0.03),
-                rgba(0,128,24,0.03),
-                rgba(0,0,249,0.03),
-                rgba(134,0,125,0.03));
+            border-color: var(--tea-green);
+            border-width: 2px;
+            background: linear-gradient(135deg, var(--tea-green-pale) 0%, var(--white) 100%);
         }
 
         .result-brand {
-            background: linear-gradient(90deg,
-                var(--rainbow-red),
-                var(--rainbow-orange),
-                var(--rainbow-yellow),
-                var(--rainbow-green),
-                var(--rainbow-blue),
-                var(--rainbow-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 800;
+            color: var(--tea-green);
+            font-weight: 700;
+        }
+
+        .step-number {
+            color: var(--tea-green);
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .step-title {
+            color: var(--text-dark);
+            font-weight: 600;
         }
 
         * {
@@ -212,35 +212,12 @@
             overflow: hidden;
         }
 
-        .option::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .option:hover {
-            border-color: var(--rainbow-purple);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(134, 0, 125, 0.15);
-        }
-
         .option:hover::before {
             left: 100%;
         }
 
         .option.selected {
-            background: linear-gradient(135deg, rgba(255,0,24,0.08), rgba(134,0,125,0.08));
-            border-color: var(--rainbow-purple);
-            border-width: 2px;
-            color: var(--rainbow-purple);
-            font-weight: 600;
-            transform: scale(1.02);
-            box-shadow: 0 8px 30px rgba(134, 0, 125, 0.2);
+            transform: scale(1.01);
         }
 
         /* 结果区域 */
