@@ -398,7 +398,7 @@
         <!-- 步骤4: 预算 -->
         <div class="step card" id="step4" style="display: none;">
             <div class="step-number">STEP 4 / 4</div>
-            <div class="step-title">你有多少预算？</div>
+            <div class="step-title">你的价格范围？</div>
             <div class="options" id="options4"></div>
         </div>
 
@@ -423,25 +423,20 @@
         const options = {
             1: [
                 { value: '男', label: '男' },
-                { value: '女', label: '女' },
-                { value: '其他', label: '其他' }
+                { value: '女', label: '女' }
             ],
             2: [
-                { value: '萌新', label: '萌新' },
                 { value: '小登', label: '小登' },
                 { value: '中登', label: '中登' },
                 { value: '老登', label: '老登' }
             ],
             3: [
                 { value: '摸鱼新手', label: '摸鱼新手' },
-                { value: '打工仔', label: '打工仔' },
                 { value: '搬砖人', label: '搬砖人' },
                 { value: '职场老油子', label: '职场老油子' },
                 { value: '背锅侠', label: '背锅侠' },
                 { value: '卷王', label: '卷王' },
                 { value: '摆烂选手', label: '摆烂选手' },
-                { value: '管理层', label: '管理层' },
-                { value: '创业勇士', label: '创业勇士' },
                 { value: '自由灵魂', label: '自由灵魂' }
             ],
             4: [
@@ -478,22 +473,14 @@
         // 匹配逻辑
         const matchData = {
             '男': {
-                '萌新': { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '霸王茶姬'], '差钱咋地': ['蜜雪冰城', '一点点'] },
                 '小登': { '差钱': ['一点点', 'CoCo都可'], '不差钱': ['喜茶', '茶百道', '霸王茶姬'], '差钱咋地': ['古茗', '蜜雪冰城'] },
                 '中登': { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '奈雪', '霸王茶姬'], '差钱咋地': ['一点点', 'CoCo都可'] },
                 '老登': { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '奈雪', '霸王茶姬'], '差钱咋地': ['古茗', '书亦烧仙草'] }
             },
             '女': {
-                '萌新': { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋地': ['蜜雪冰城', '沪上阿姨'] },
                 '小登': { '差钱': ['蜜雪冰城', '一点点'], '不差钱': ['喜茶', '奈雪', '茶百道'], '差钱咋地': ['沪上阿姨', '书亦烧仙草'] },
                 '中登': { '差钱': ['书亦烧仙草'], '不差钱': ['奈雪', '茶百道', '古茗'], '差钱咋地': ['一点点', 'CoCo都可'] },
                 '老登': { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '奈雪', '霸王茶姬'], '差钱咋地': ['沪上阿姨', '书亦烧仙草'] }
-            },
-            '其他': {
-                '萌新': { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '霸王茶姬'], '差钱咋地': ['蜜雪冰城'] },
-                '小登': { '差钱': ['一点点'], '不差钱': ['茶百道', '古茗'], '差钱咋地': ['CoCo都可'] },
-                '中登': { '差钱': ['书亦烧仙草'], '不差钱': ['霸王茶姬', '奈雪'], '差钱咋地': ['一点点'] },
-                '老登': { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋地': ['古茗'] }
             }
         };
 
@@ -567,9 +554,9 @@
 
         // 计算结果
         function calculateResult() {
-            const genderData = matchData[userData.gender] || matchData['其他'];
-            const ageData = genderData[userData.age] || genderData['小登'];
-            const budgetData = ageData[userData.budget] || ageData['不差钱'];
+            const genderData = matchData[userData.gender];
+            const ageData = genderData[userData.age];
+            const budgetData = ageData[userData.budget];
             return budgetData.slice(0, 3);
         }
 
