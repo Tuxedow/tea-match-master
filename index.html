@@ -162,6 +162,21 @@
         }
 
         /* 步骤标题 */
+        .step {
+            animation: fadeInUp 0.4s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .step-header {
             margin-bottom: 24px;
         }
@@ -186,22 +201,46 @@
 
         .option {
             background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 16px 20px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 24px;
             cursor: pointer;
-            transition: all 0.15s ease;
-            font-size: 15px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 16px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
         }
 
         .option:hover {
-            border-color: var(--border-hover);
+            border-color: var(--rainbow-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(134, 0, 125, 0.15);
+        }
+
+        .option:hover::before {
+            left: 100%;
         }
 
         .option.selected {
-            background: var(--accent-light);
-            border-color: var(--accent);
-            color: var(--text);
+            background: linear-gradient(135deg, rgba(255,0,24,0.08), rgba(134,0,125,0.08));
+            border-color: var(--rainbow-purple);
+            border-width: 2px;
+            color: var(--rainbow-purple);
+            font-weight: 600;
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(134, 0, 125, 0.2);
         }
 
         /* 结果区域 */
@@ -524,6 +563,8 @@
             document.getElementById('step' + (step - 1)).style.display = 'none';
             // 显示下一步
             document.getElementById('step' + step).style.display = 'block';
+            // 渲染选项
+            renderOptions(step);
             // 更新进度
             updateProgress(step);
         }
