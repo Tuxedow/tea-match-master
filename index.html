@@ -3,33 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>你是什么茶？ - 找到你的命中注定那杯茶</title>
+    <title>你是什么茶</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
         :root {
-            /* Notion风格配色 - 清爽简洁 */
-            --bg: #FFFFFF;
-            --bg-secondary: #F7F7F5;
-            --bg-tertiary: #EFEFEF;
-            --text: #37352F;
-            --text-secondary: #787774;
-            --text-tertiary: #9B9A97;
-            --border: #E9E9E7;
-            --border-hover: #D3D3D0;
-            --card-bg: #FFFFFF;
-            --card-border: #E0E0E0;
-            --accent: #E8634A;
-            --accent-light: #FDEEE9;
-            --selection: #E8F4FD;
-            --success: #0F7B6C;
-            --warning: #D4A72C;
-            --shadow: 0 1px 3px rgba(0,0,0,0.08);
-            --shadow-hover: 0 4px 12px rgba(0,0,0,0.1);
-            --radius: 8px;
-            --radius-sm: 4px;
+            --bg: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --text: #1A1A1A;
+            --text-secondary: #666666;
+            --text-tertiary: #999999;
+            --border: #E5E5E5;
+            --border-hover: #CCCCCC;
+            --accent: #D4A574;
+            --accent-light: #F5EDE5;
+            --shadow: 0 1px 2px rgba(0,0,0,0.04);
+            --radius: 6px;
         }
 
         * {
@@ -39,1124 +29,519 @@
         }
 
         body {
-            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
         }
 
-        /* 导航 */
+        /* 头部 */
         header {
-            background: var(--bg);
+            background: var(--bg-card);
             border-bottom: 1px solid var(--border);
-            padding: 12px 24px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            padding: 16px 24px;
+            text-align: center;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .logo-icon {
-            width: 28px;
-            height: 28px;
-            background: var(--accent);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            color: white;
-        }
-
-        .logo h1 {
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--text);
-            letter-spacing: 0.5px;
+        header h1 {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 2px;
         }
 
         /* 主容器 */
         .container {
-            max-width: 640px;
+            max-width: 520px;
             margin: 0 auto;
-            padding: 40px 20px 80px;
+            padding: 40px 20px 60px;
         }
 
-        /* Hero */
-        .hero {
-            text-align: center;
-            padding: 20px 0 40px;
-        }
-
-        .hero h2 {
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 8px;
-        }
-
-        .hero p {
-            font-size: 15px;
-            color: var(--text-secondary);
-        }
-
-        /* 进度指示器 */
-        .progress-bar {
+        /* 进度 */
+        .progress {
             display: flex;
             justify-content: center;
             gap: 8px;
-            margin-bottom: 32px;
+            margin-bottom: 40px;
         }
 
         .progress-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
+            width: 32px;
+            height: 4px;
             background: var(--border);
-            transition: all 0.3s ease;
+            border-radius: 2px;
+            transition: background 0.3s ease;
         }
 
         .progress-dot.active {
-            background: var(--accent);
-            width: 24px;
-            border-radius: 4px;
+            background: var(--text);
         }
 
-        .progress-dot.completed {
-            background: var(--success);
+        /* 步骤标题 */
+        .step-header {
+            margin-bottom: 24px;
         }
 
-        /* 卡片 - Notion风格 */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius);
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: var(--shadow);
-            transition: box-shadow 0.2s ease;
-            animation: fadeIn 0.4s ease;
+        .step-number {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            margin-bottom: 4px;
         }
 
-        .card:hover {
-            box-shadow: var(--shadow-hover);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .card-title {
-            font-size: 14px;
+        .step-title {
+            font-size: 24px;
             font-weight: 500;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        /* 表单选项 */
-        .options-grid {
-            display: flex;
-            flex-direction: column;
+        /* 选项卡片 */
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 8px;
         }
 
-        .option-btn {
-            display: flex;
-            align-items: center;
-            padding: 12px 16px;
-            background: var(--bg-secondary);
+        .option {
+            background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
+            border-radius: var(--radius);
+            padding: 16px 20px;
             cursor: pointer;
             transition: all 0.15s ease;
             font-size: 15px;
-            color: var(--text);
         }
 
-        .option-btn:hover {
-            background: var(--bg-tertiary);
+        .option:hover {
             border-color: var(--border-hover);
         }
 
-        .option-btn.selected {
+        .option.selected {
             background: var(--accent-light);
             border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .option-btn .check {
-            width: 18px;
-            height: 18px;
-            border: 2px solid var(--border-hover);
-            border-radius: 50%;
-            margin-right: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.15s ease;
-        }
-
-        .option-btn.selected .check {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: white;
-        }
-
-        .option-btn.selected .check::after {
-            content: '✓';
-            font-size: 12px;
-        }
-
-        /* 导航按钮 */
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border-radius: var(--radius-sm);
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            border: none;
-        }
-
-        .btn-secondary {
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            background: var(--bg-tertiary);
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            opacity: 0.9;
-        }
-
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        /* 开始按钮 */
-        .start-btn {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            background: var(--accent);
-            color: white;
-            border: none;
-            border-radius: var(--radius);
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            margin-top: 24px;
-        }
-
-        .start-btn:hover {
-            opacity: 0.9;
-            box-shadow: var(--shadow-hover);
+            color: var(--text);
         }
 
         /* 结果区域 */
-        .result-section {
+        .result {
             display: none;
         }
 
-        .result-section.show {
+        .result.show {
             display: block;
-            animation: fadeIn 0.5s ease;
         }
 
-        /* 刮刮卡样式 */
-        .scratch-card {
-            position: relative;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            border-radius: var(--radius);
-            padding: 40px 24px;
+        .result-title {
+            font-size: 20px;
             text-align: center;
-            overflow: hidden;
-            cursor: pointer;
+            margin-bottom: 32px;
+            color: var(--text-secondary);
         }
 
-        .scratch-card.scratched {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-        }
-
-        .scratch-cover {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, #C0C0C0 0%, #A0A0A0 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            transition: opacity 0.5s ease;
-        }
-
-        .scratch-cover.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .scratch-cover-text {
-            font-size: 24px;
-            font-weight: 700;
-            color: #666;
-            margin-bottom: 8px;
-        }
-
-        .scratch-cover-hint {
-            font-size: 13px;
-            color: #888;
-        }
-
-        .scratch-result {
-            padding: 20px 0;
-        }
-
-        .scratch-result h3 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #FFD700;
-            margin-bottom: 8px;
-        }
-
-        .scratch-result .match-score {
-            font-size: 48px;
-            font-weight: 700;
-            color: white;
-        }
-
-        /* 结果详情卡片 */
-        .result-detail {
-            background: var(--bg-secondary);
+        /* 结果卡片 */
+        .result-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 20px;
-            margin-top: 16px;
-        }
-
-        .result-detail h4 {
-            font-size: 13px;
-            color: var(--text-tertiary);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .result-detail .brand-name {
-            font-size: 22px;
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 8px;
-        }
-
-        .result-detail .drink-name {
-            font-size: 16px;
-            color: var(--text);
+            padding: 24px;
             margin-bottom: 12px;
         }
 
-        .result-detail .reason {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.7;
+        .result-card:first-child {
+            border-color: var(--accent);
+            border-width: 2px;
         }
 
-        /* 多个推荐结果 */
-        .result-list {
-            margin-top: 16px;
-        }
-
-        .result-item {
-            background: var(--bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-sm);
-            padding: 16px;
+        .result-rank {
+            font-size: 12px;
+            color: var(--text-tertiary);
             margin-bottom: 8px;
         }
 
-        .result-item .rank {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            background: var(--accent);
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 24px;
-            font-size: 12px;
+        .result-brand {
+            font-size: 22px;
             font-weight: 600;
-            margin-right: 10px;
+            margin-bottom: 8px;
         }
 
-        .result-item .brand {
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .result-item .drinks {
+        .result-drinks {
             font-size: 14px;
             color: var(--text-secondary);
-            margin-top: 4px;
-            padding-left: 34px;
+            margin-bottom: 12px;
         }
 
-        /* 重新测试按钮 */
-        .retry-section {
-            text-align: center;
+        .result-reason {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            font-style: italic;
+        }
+
+        /* 按钮 */
+        .actions {
+            display: flex;
+            gap: 12px;
             margin-top: 32px;
         }
 
-        .retry-btn {
-            padding: 12px 32px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
+        .btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
             border-radius: var(--radius);
             font-size: 14px;
-            color: var(--text-secondary);
             cursor: pointer;
-            transition: all 0.15s ease;
+            transition: opacity 0.15s ease;
         }
 
-        .retry-btn:hover {
-            background: var(--bg-tertiary);
-            color: var(--text);
+        .btn-primary {
+            background: var(--text);
+            color: white;
         }
 
-        /* 分享按钮 */
-        .share-section {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 24px;
-        }
-
-        .share-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: var(--bg-secondary);
+        .btn-secondary {
+            background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: var(--radius);
-            font-size: 14px;
             color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.15s ease;
         }
 
-        .share-btn:hover {
-            background: var(--bg-tertiary);
-            color: var(--text);
+        .btn:hover {
+            opacity: 0.8;
         }
 
-        /* 截图水印区域 */
-        .screenshot-area {
-            background: var(--bg);
+        /* 加载动画 */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .loading-dots {
+            display: inline-flex;
+            gap: 4px;
+        }
+
+        .loading-dots span {
+            width: 8px;
+            height: 8px;
+            background: var(--text-tertiary);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
         }
 
         /* 响应式 */
-        @media (max-width: 640px) {
+        @media (max-width: 480px) {
             .container {
-                padding: 24px 16px 60px;
-            }
-
-            .hero h2 {
-                font-size: 26px;
-            }
-
-            .card {
-                padding: 20px;
+                padding: 24px 16px 40px;
             }
         }
     </style>
 </head>
-<body onload="initApp()">
+<body onload="init()">
     <header>
-        <div class="logo">
-            <div class="logo-icon">🧋</div>
-            <h1>你是什么茶？</h1>
-        </div>
+        <h1>你是什么茶</h1>
     </header>
 
     <div class="container">
-        <!-- Hero区域 -->
-        <!-- 进度条 -->
-        <div class="progress-bar" id="progressBar" style="display: flex;">
-            <div class="progress-dot" data-step="1"></div>
-            <div class="progress-dot" data-step="2"></div>
-            <div class="progress-dot" data-step="3"></div>
-            <div class="progress-dot" data-step="4"></div>
+        <!-- 进度 -->
+        <div class="progress" id="progress">
+            <div class="progress-dot active"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
         </div>
 
-        <!-- 步骤1: 年龄 -->
-        <div class="card step-card" id="step1" style="display: none;">
-            <div class="card-title">Step 1 / 4</div>
-            <h3 style="font-size: 20px; margin-bottom: 16px;">你的年龄是？</h3>
-            <div class="options-grid">
-                <div class="option-btn" data-value="18以下" onclick="selectOption(1, this)">
-                    <span class="check"></span>
-                    18岁以下
-                </div>
-                <div class="option-btn" data-value="18-25" onclick="selectOption(1, this)">
-                    <span class="check"></span>
-                    18-25岁
-                </div>
-                <div class="option-btn" data-value="26-35" onclick="selectOption(1, this)">
-                    <span class="check"></span>
-                    26-35岁
-                </div>
-                <div class="option-btn" data-value="36-45" onclick="selectOption(1, this)">
-                    <span class="check"></span>
-                    36-45岁
-                </div>
-                <div class="option-btn" data-value="45以上" onclick="selectOption(1, this)">
-                    <span class="check"></span>
-                    45岁以上
-                </div>
+        <!-- 步骤1: 性别 -->
+        <div class="step" id="step1">
+            <div class="step-header">
+                <div class="step-number">STEP 1 / 4</div>
+                <div class="step-title">你是哪种生物？</div>
             </div>
-            <div class="nav-buttons">
-                <button class="btn btn-secondary" style="visibility: hidden;">上一步</button>
-                <button class="btn btn-primary" id="btn1" disabled onclick="nextStep(1)">下一步</button>
-            </div>
+            <div class="options" id="options1"></div>
         </div>
 
-        <!-- 步骤2: 性别 -->
-        <div class="card step-card" id="step2" style="display: none;">
-            <div class="card-title">Step 2 / 4</div>
-            <h3 style="font-size: 20px; margin-bottom: 16px;">你的性别是？</h3>
-            <div class="options-grid">
-                <div class="option-btn" data-value="男" onclick="selectOption(2, this)">
-                    <span class="check"></span>
-                    小哥哥
-                </div>
-                <div class="option-btn" data-value="女" onclick="selectOption(2, this)">
-                    <span class="check"></span>
-                    小姐姐
-                </div>
-                <div class="option-btn" data-value="其他" onclick="selectOption(2, this)">
-                    <span class="check"></span>
-                    其他
-                </div>
+        <!-- 步骤2: 年龄 -->
+        <div class="step" id="step2" style="display: none;">
+            <div class="step-header">
+                <div class="step-number">STEP 2 / 4</div>
+                <div class="step-title">你是什么段位？</div>
             </div>
-            <div class="nav-buttons">
-                <button class="btn btn-secondary" onclick="goBack(2)">上一步</button>
-                <button class="btn btn-primary" id="btn2" disabled onclick="nextStep(2)">下一步</button>
-            </div>
+            <div class="options" id="options2"></div>
         </div>
 
         <!-- 步骤3: 职业 -->
-        <div class="card step-card" id="step3" style="display: none;">
-            <div class="card-title">Step 3 / 4</div>
-            <h3 style="font-size: 20px; margin-bottom: 16px;">你的职业是？</h3>
-            <div class="options-grid">
-                <div class="option-btn" data-value="学生" onclick="selectOption(3, this)">
-                    <span class="check"></span>
-                    学生党
-                </div>
-                <div class="option-btn" data-value="程序员" onclick="selectOption(3, this)">
-                    <span class="check"></span>
-                    程序员/IT
-                </div>
-                <div class="option-btn" data-value="上班族" onclick="selectOption(3, this)">
-                    <span class="check"></span>
-                    上班族
-                </div>
-                <div class="option-btn" data-value="教师" onclick="selectOption(3, this)">
-                    <span class="check"></span>
-                    教师/公务员
-                </div>
-                <div class="option-btn" data-value="自由职业" onclick="selectOption(3, this)">
-                    <span class="check"></span>
-                    自由职业
-                </div>
-                <div class="option-btn" data-value="家庭" onclick="selectOption(3, this)">
-                    <span class="check"></span>
-                    家庭主妇/主夫
-                </div>
-                <div class="option-btn" data-value="退休" onclick="selectOption(3, this)">
-                    <span class="check"></span>
-                    退休
-                </div>
-                <div class="option-btn" data-value="老板" onclick="selectOption(3, this)">
-                    <span class="check"></span>
-                    创业/老板
-                </div>
+        <div class="step" id="step3" style="display: none;">
+            <div class="step-header">
+                <div class="step-number">STEP 3 / 4</div>
+                <div class="step-title">你靠什么谋生？</div>
             </div>
-            <div class="nav-buttons">
-                <button class="btn btn-secondary" onclick="goBack(3)">上一步</button>
-                <button class="btn btn-primary" id="btn3" disabled onclick="nextStep(3)">下一步</button>
-            </div>
+            <div class="options" id="options3"></div>
         </div>
 
         <!-- 步骤4: 预算 -->
-        <div class="card step-card" id="step4" style="display: none;">
-            <div class="card-title">Step 4 / 4</div>
-            <h3 style="font-size: 20px; margin-bottom: 16px;">你的预算？</h3>
-            <div class="options-grid">
-                <div class="option-btn" data-value="差钱" onclick="selectOption(4, this)">
-                    <span class="check"></span>
-                    差钱 💰
-                </div>
-                <div class="option-btn" data-value="不差钱" onclick="selectOption(4, this)">
-                    <span class="check"></span>
-                    不差钱 ✨
-                </div>
-                <div class="option-btn" data-value="差钱咋滴" onclick="selectOption(4, this)">
-                    <span class="check"></span>
-                    差钱咋滴 😎
-                </div>
+        <div class="step" id="step4" style="display: none;">
+            <div class="step-header">
+                <div class="step-number">STEP 4 / 4</div>
+                <div class="step-title">你有多少预算？</div>
             </div>
-            <div class="nav-buttons">
-                <button class="btn btn-secondary" onclick="goBack(4)">上一步</button>
-                <button class="btn btn-primary" id="btn4" disabled onclick="showResult()">查看结果</button>
+            <div class="options" id="options4"></div>
+        </div>
+
+        <!-- 加载中 -->
+        <div class="loading" id="loading">
+            <div class="loading-dots">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
 
-        <!-- 结果区域 -->
-        <div class="result-section" id="resultSection">
-            <!-- 刮刮卡 -->
-            <div class="scratch-card" id="scratchCard">
-                <div class="scratch-cover" id="scratchCover">
-                    <div class="scratch-cover-text">👆 刮开看结果</div>
-                    <div class="scratch-cover-hint">点击或滑动刮开涂层</div>
-                </div>
-                <div class="scratch-result" id="scratchResult" style="display: none;">
-                    <h3 id="resultTitle">你的奶茶缘分</h3>
-                    <div class="match-score" id="matchScore">0%</div>
-                </div>
-            </div>
-
-            <!-- 结果详情 -->
-            <div id="resultDetail" style="display: none;">
-                <div class="result-detail">
-                    <h4>推荐品牌</h4>
-                    <div class="brand-name" id="resultBrand">-</div>
-                    <div class="drink-name" id="resultDrink">-</div>
-                    <div class="reason" id="resultReason">-</div>
-                </div>
-
-                <!-- 更多推荐 -->
-                <div class="result-list" id="resultList"></div>
-            </div>
-
-            <!-- 分享按钮 -->
-            <div class="share-section" id="shareSection" style="display: none;">
-                <button class="share-btn" onclick="screenshot()">
-                    📷 保存图片
-                </button>
-                <button class="share-btn" onclick="copyResult()">
-                    📋 复制结果
-                </button>
-            </div>
-
-            <!-- 重新测试 -->
-            <div class="retry-section">
-                <button class="retry-btn" onclick="resetQuiz()">重新测试</button>
+        <!-- 结果 -->
+        <div class="result" id="result">
+            <div class="result-title">测出来了，你自己看吧</div>
+            <div id="resultCards"></div>
+            <div class="actions">
+                <button class="btn btn-secondary" onclick="saveImage()">保存图片</button>
+                <button class="btn btn-primary" onclick="restart()">再测一次</button>
             </div>
         </div>
     </div>
 
     <script>
-        // 初始化应用 - 直接显示第一个问题
-        function initApp() {
-            showStep(1);
-        }
+        // 选项配置
+        const options = {
+            1: [
+                { value: '男', label: '男' },
+                { value: '女', label: '女' },
+                { value: '其他', label: '其他' }
+            ],
+            2: [
+                { value: '萌新', label: '萌新' },
+                { value: '小登', label: '小登' },
+                { value: '中登', label: '中登' },
+                { value: '老登', label: '老登' }
+            ],
+            3: [
+                { value: '摸鱼新手', label: '摸鱼新手' },
+                { value: '打工仔', label: '打工仔' },
+                { value: '搬砖人', label: '搬砖人' },
+                { value: '职场老油子', label: '职场老油子' },
+                { value: '背锅侠', label: '背锅侠' },
+                { value: '卷王', label: '卷王' },
+                { value: '摆烂选手', label: '摆烂选手' },
+                { value: '管理层', label: '管理层' },
+                { value: '创业勇士', label: '创业勇士' },
+                { value: '自由灵魂', label: '自由灵魂' }
+            ],
+            4: [
+                { value: '差钱', label: '差钱' },
+                { value: '不差钱', label: '不差钱' },
+                { value: '差钱咋地', label: '差钱咋地' }
+            ]
+        };
 
-        // 用户选择数据
+        // 用户选择
         const userData = {
-            age: '',
             gender: '',
+            age: '',
             occupation: '',
             budget: ''
         };
 
-        // 品牌数据库
-        const brands = [
-            { name: '喜茶', avgPrice: 28, style: '高端创新', keywords: ['果茶', '芝士', '奶茶', '联名'] },
-            { name: '奈雪的茶', avgPrice: 27, style: '高端软欧包', keywords: ['果茶', '软欧包', '奶茶'] },
-            { name: '霸王茶姬', avgPrice: 18, style: '原叶鲜奶茶', keywords: ['奶茶', '原叶', '伯牙绝弦'] },
-            { name: '古茗', avgPrice: 15, style: '水果茶', keywords: ['水果茶', '奶茶', '杨枝甘露'] },
-            { name: '书亦烧仙草', avgPrice: 13, style: '烧仙草', keywords: ['烧仙草', '奶茶', '草本'] },
-            { name: '茶百道', avgPrice: 15, style: '果茶热门', keywords: ['杨枝甘露', '水果茶', '奶茶'] },
-            { name: 'CoCo都可', avgPrice: 16, style: '经典款多', keywords: ['奶茶', '果茶', '经典'] },
-            { name: '一点点', avgPrice: 15, style: '隐藏菜单', keywords: ['奶茶', '隐藏菜单', '波霸'] },
-            { name: '蜜雪冰城', avgPrice: 8, style: '性价比之王', keywords: ['冰淇淋', '柠檬水', '性价比'] },
-            { name: '茶颜悦色', avgPrice: 16, style: '茶味浓郁', keywords: ['幽兰拿铁', '茶饮', '中国风'] },
-            { name: '乐乐茶', avgPrice: 22, style: '软欧包', keywords: ['软欧包', '果茶', '脏脏包'] },
-            { name: '沪上阿姨', avgPrice: 14, style: '血糯米', keywords: ['血糯米', '奶茶', '性价比'] }
-        ];
+        // 品牌推荐
+        const brands = {
+            '喜茶': { drinks: ['多肉葡萄', '烤黑糖波波'], reason: '虽然贵，但让你觉得自己还没那么惨' },
+            '奈雪的茶': { drinks: ['霸气橙子', '软欧包'], reason: '买完发朋友圈，人均以为你年入百万' },
+            '霸王茶姬': { drinks: ['伯牙绝弦', '青青糯山', '桂馥兰香'], reason: '中产快乐水，属于你的星巴克平替' },
+            '古茗': { drinks: ['杨枝甘露', '超A芝士葡萄'], reason: '三四线小城之光，你值得拥有' },
+            '书亦烧仙草': { drinks: ['书亦烧仙草', '橙漫山茶花'], reason: '中规中矩，就像你的生活' },
+            '茶百道': { drinks: ['杨枝甘露', '芒果糯米饭'], reason: '存在感不强，但也不出错' },
+            'CoCo都可': { drinks: ['百香双响炮', '珍珠奶茶'], reason: '经典老字号，属于你的情怀' },
+            '一点点': { drinks: ['波霸奶茶', '四季春茶'], reason: '隐藏菜单の王者，仪式感拉满' },
+            '蜜雪冰城': { drinks: ['冰鲜柠檬水', '蜜桃四季春'], reason: '4块钱的快乐，还要什么自行车' },
+            '茶颜悦色': { drinks: ['幽兰拿铁', '声声乌龙'], reason: '网红打卡必备，属于你的精致穷' },
+            '乐乐茶': { drinks: ['酪酪草莓', '脏脏茶'], reason: '网红刺客，一杯更比三杯贵' },
+            '沪上阿姨': { drinks: ['血糯米奶茶', '杨枝甘露'], reason: '接地气，属于你的烟火气' }
+        };
 
-        // 匹配推荐
-        const recommendations = {
-            '18以下': {
-                '男': {
-                    '学生': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '茶百道'], '差钱咋滴': ['蜜雪冰城', '沪上阿姨'] }},
-                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '喜茶'], '差钱咋滴': ['CoCo都可', '一点点'] }},
-                    '上班族': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶百道', '古茗'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋滴': ['古茗'] }},
-                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['乐乐茶', '喜茶'], '差钱咋滴': ['沪上阿姨'] }},
-                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '乐乐茶'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
-                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋滴': ['古茗'] }}
-                },
-                '女': {
-                    '学生': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋滴': ['沪上阿姨', '书亦烧仙草'] }},
-                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '茶百道'], '差钱咋滴': ['一点点'] }},
-                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '古茗'], '差钱咋滴': ['CoCo都可'] }},
-                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋滴': ['古茗'] }},
-                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['乐乐茶', '喜茶'], '差钱咋滴': ['沪上阿姨'] }},
-                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
-                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋滴': ['古茗'] }}
-                },
-                '其他': {
-                    '学生': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '茶百道'], '差钱咋滴': ['沪上阿姨'] }},
-                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '喜茶'], '差钱咋滴': ['一点点'] }},
-                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '古茗'], '差钱咋滴': ['CoCo都可'] }},
-                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋滴': ['古茗'] }},
-                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['乐乐茶', '喜茶'], '差钱咋滴': ['沪上阿姨'] }},
-                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
-                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋滴': ['古茗'] }}
-                }
+        // 匹配逻辑
+        const matchData = {
+            '男': {
+                '萌新': { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '霸王茶姬'], '差钱咋地': ['蜜雪冰城', '一点点'] },
+                '小登': { '差钱': ['一点点', 'CoCo都可'], '不差钱': ['喜茶', '茶百道', '霸王茶姬'], '差钱咋地': ['古茗', '蜜雪冰城'] },
+                '中登': { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '奈雪', '霸王茶姬'], '差钱咋地': ['一点点', 'CoCo都可'] },
+                '老登': { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '奈雪', '霸王茶姬'], '差钱咋地': ['古茗', '书亦烧仙草'] }
             },
-            '18-25': {
-                '男': {
-                    '学生': { budget: { '差钱': ['蜜雪冰城', '一点点'], '不差钱': ['喜茶', '茶百道', '霸王茶姬'], '差钱咋滴': ['CoCo都可', '古茗'] }},
-                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '喜茶', '一点点'], '差钱咋滴': ['CoCo都可'] }},
-                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '古茗', '霸王茶姬'], '差钱咋滴': ['一点点'] }},
-                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋滴': ['古茗'] }},
-                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['乐乐茶', '喜茶', '奈雪'], '差钱咋滴': ['沪上阿姨'] }},
-                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '乐乐茶'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
-                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }}
-                },
-                '女': {
-                    '学生': { budget: { '差钱': ['蜜雪冰城', '一点点'], '不差钱': ['喜茶', '奈雪', '茶百道'], '差钱咋滴': ['沪上阿姨', '书亦烧仙草'] }},
-                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '茶百道', '喜茶'], '差钱咋滴': ['一点点'] }},
-                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '古茗', '奈雪'], '差钱咋滴': ['CoCo都可'] }},
-                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }},
-                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['乐乐茶', '喜茶', '奈雪'], '差钱咋滴': ['沪上阿姨'] }},
-                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色', '乐乐茶'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬', '奈雪'], '差钱咋滴': ['沪上阿姨'] }},
-                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }}
-                },
-                '其他': {
-                    '学生': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '茶百道'], '差钱咋滴': ['沪上阿姨'] }},
-                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '喜茶'], '差钱咋滴': ['一点点'] }},
-                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '古茗'], '差钱咋滴': ['CoCo都可'] }},
-                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋滴': ['古茗'] }},
-                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['乐乐茶', '喜茶'], '差钱咋滴': ['沪上阿姨'] }},
-                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
-                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋滴': ['古茗'] }}
-                }
+            '女': {
+                '萌新': { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋地': ['蜜雪冰城', '沪上阿姨'] },
+                '小登': { '差钱': ['蜜雪冰城', '一点点'], '不差钱': ['喜茶', '奈雪', '茶百道'], '差钱咋地': ['沪上阿姨', '书亦烧仙草'] },
+                '中登': { '差钱': ['书亦烧仙草'], '不差钱': ['奈雪', '茶百道', '古茗'], '差钱咋地': ['一点点', 'CoCo都可'] },
+                '老登': { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '奈雪', '霸王茶姬'], '差钱咋地': ['沪上阿姨', '书亦烧仙草'] }
             },
-            '26-35': {
-                '男': {
-                    '学生': { budget: { '差钱': ['一点点', 'CoCo都可'], '不差钱': ['喜茶', '霸王茶姬', '茶百道'], '差钱咋滴': ['古茗'] }},
-                    '程序员': { budget: { '差钱': ['一点点'], '不差钱': ['霸王茶姬', '喜茶', '奈雪'], '差钱咋滴': ['CoCo都可'] }},
-                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '古茗', '霸王茶姬'], '差钱咋滴': ['一点点'] }},
-                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪', '霸王茶姬'], '差钱咋滴': ['古茗'] }},
-                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['乐乐茶', '喜茶', '奈雪'], '差钱咋滴': ['古茗'] }},
-                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '乐乐茶', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
-                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }}
-                },
-                '女': {
-                    '学生': { budget: { '差钱': ['一点点', '书亦烧仙草'], '不差钱': ['喜茶', '奈雪', '茶百道'], '差钱咋滴': ['沪上阿姨'] }},
-                    '程序员': { budget: { '差钱': ['一点点'], '不差钱': ['霸王茶姬', '茶百道', '喜茶'], '差钱咋滴': ['CoCo都可'] }},
-                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '古茗', '奈雪'], '差钱咋滴': ['一点点'] }},
-                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }},
-                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], 'not差钱': ['乐乐茶', '喜茶', '奈雪'], '差钱咋滴': ['沪上阿姨'] }},
-                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色', '乐乐茶'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬', '奈雪'], '差钱咋滴': ['沪上阿姨'] }},
-                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }}
-                },
-                '其他': {
-                    '学生': { budget: { '差钱': ['一点点'], '不差钱': ['喜茶', '茶百道'], '差钱咋滴': ['古茗'] }},
-                    '程序员': { budget: { '差钱': ['一点点'], '不差钱': ['霸王茶姬', '喜茶'], '差钱咋滴': ['CoCo都可'] }},
-                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶百道', '古茗'], '差钱咋滴': ['一点点'] }},
-                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋滴': ['古茗'] }},
-                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['乐乐茶', '喜茶'], '差钱咋滴': ['古茗'] }},
-                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋咋滴': ['沪上阿姨'] }},
-                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋滴': ['古茗'] }}
-                }
-            },
-            '36-45': {
-                '男': {
-                    '学生': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['霸王茶姬', '奈雪', '茶颜悦色'], '差钱咋滴': ['古茗'] }},
-                    '程序员': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['霸王茶姬', '奈雪', '茶百道'], '差钱咋滴': ['古茗'] }},
-                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['霸王茶姬', '古茗', '奈雪'], '差钱咋滴': ['一点点'] }},
-                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪', '霸王茶姬'], '差钱咋滴': ['古茗'] }},
-                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '乐乐茶', '霸王茶姬'], '差钱咋滴': ['古茗'] }},
-                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬', '奈雪'], '差钱咋滴': ['沪上阿姨'] }},
-                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }}
-                },
-                '女': {
-                    '学生': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['奈雪', '茶颜悦色', '茶百道'], '差钱咋滴': ['沪上阿姨'] }},
-                    '程序员': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['霸王茶姬', '奈雪', '茶百道'], '差钱咋滴': ['古茗'] }},
-                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['奈雪', '茶百道', '古茗'], '差钱咋滴': ['一点点'] }},
-                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }},
-                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '乐乐茶', '茶颜悦色'], '差钱咋滴': ['沪上阿姨'] }},
-                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色', '乐乐茶'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '奈雪', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
-                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪', '乐乐茶'], '差钱咋滴': ['古茗'] }}
-                },
-                '其他': {
-                    '学生': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['古茗'] }},
-                    '程序员': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['霸王茶姬', '奈雪'], '差钱咋滴': ['古茗'] }},
-                    '上班族': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['霸王茶姬', '古茗'], '差钱咋滴': ['一点点'] }},
-                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋滴': ['古茗'] }},
-                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '乐乐茶'], '差钱咋滴': ['沪上阿姨'] }},
-                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
-                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋滴': ['古茗'] }}
-                }
-            },
-            '45以上': {
-                '男': {
-                    '学生': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '茶颜悦色'], '差钱咋滴': ['沪上阿姨'] }},
-                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '奈雪'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '上班族': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '古茗'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪', '霸王茶姬'], '差钱咋滴': ['古茗'] }},
-                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬', '奈雪'], '差钱咋滴': ['沪上阿姨'] }},
-                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪', '茶颜悦色'], '差钱咋滴': ['古茗'] }}
-                },
-                '女': {
-                    '学生': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['沪上阿姨'] }},
-                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '奈雪'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '上班族': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '奈雪', '古茗'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪', '霸王茶姬'], '差钱咋滴': ['古茗'] }},
-                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色', '乐乐茶'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '奈雪', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
-                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪', '茶颜悦色'], '差钱咋滴': ['古茗'] }}
-                },
-                '其他': {
-                    '学生': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '奈雪'], '差钱咋滴': ['沪上阿姨'] }},
-                    '程序员': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '奈雪'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '上班族': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['霸王茶姬', '古茗'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '教师': { budget: { '差钱': ['书亦烧仙草'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋滴': ['古茗'] }},
-                    '自由职业': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '家庭': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['奈雪', '茶颜悦色'], '差钱咋滴': ['书亦烧仙草'] }},
-                    '退休': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '霸王茶姬'], '差钱咋滴': ['沪上阿姨'] }},
-                    '老板': { budget: { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '奈雪'], '差钱咋滴': ['古茗'] }}
-                }
+            '其他': {
+                '萌新': { '差钱': ['蜜雪冰城'], '不差钱': ['喜茶', '霸王茶姬'], '差钱咋地': ['蜜雪冰城'] },
+                '小登': { '差钱': ['一点点'], '不差钱': ['茶百道', '古茗'], '差钱咋地': ['CoCo都可'] },
+                '中登': { '差钱': ['书亦烧仙草'], '不差钱': ['霸王茶姬', '奈雪'], '差钱咋地': ['一点点'] },
+                '老登': { '差钱': ['蜜雪冰城'], '不差钱': ['茶颜悦色', '奈雪'], '差钱咋地': ['古茗'] }
             }
         };
 
-        // 饮品推荐
-        const drinkRecommendations = {
-            '喜茶': ['多肉葡萄', '芝芝莓莓', '烤黑糖波波', '芝芝绿妍'],
-            '奈雪的茶': ['霸气橙子', '霸气芝士草莓', '宝藏茶', '软欧包'],
-            '霸王茶姬': ['伯牙绝弦', '桂馥兰香', '青青糯山', '白雾红尘'],
-            '古茗': ['杨枝甘露', '超A芝士葡萄', '百香双重奏', '云雾栀子'],
-            '书亦烧仙草': ['书亦烧仙草', '橙漫山茶花', '小吊梨汤', '金银老白茶'],
-            '茶百道': ['杨枝甘露', '芒果糯米饭', '豆乳玉麒麟', '铁观音奶霸'],
-            'CoCo都可': ['百香双响炮', '芒果欧蕾', '珍珠奶茶', '鲜芋牛奶西米露'],
-            '一点点': ['波霸奶茶', '四季春茶', '冰淇淋红茶', '隐藏菜单'],
-            '蜜雪冰城': ['冰鲜柠檬水', '蜜桃四季春', '冰淇淋', '摇摇奶昔'],
-            '茶颜悦色': ['幽兰拿铁', '声声乌龙', '桂花弄', '筝筝纸鸢'],
-            '乐乐茶': ['酪酪草莓', '芒果酪酪', '脏脏茶', '软欧包'],
-            '沪上阿姨': ['血糯米奶茶', '杨枝甘露', '鲜奶麻薯', '桂花酒酿']
-        };
-
-        // 匹配度计算
-        function calculateMatchScore() {
-            let score = 70 + Math.floor(Math.random() * 25);
-            return score;
+        // 初始化
+        function init() {
+            renderOptions(1);
         }
 
-        // 获取推荐结果
-        function getRecommendations() {
-            const ageData = recommendations[userData.age] || recommendations['18-25'];
-            const genderData = ageData[userData.gender] || ageData['其他'];
-            const occupationData = genderData[userData.occupation] || genderData['上班族'];
-            const budgetData = occupationData.budget || occupationData['不差钱'];
-
-            return budgetData[userData.budget] || budgetData['不差钱'] || ['喜茶'];
-        }
-
-        // 获取推荐理由
-        function getReason(brand) {
-            const reasons = {
-                '喜茶': '高端创新品牌，适合追求新鲜口感的你',
-                '奈雪的茶': '茶+软欧包组合，适合下午茶时光',
-                '霸王茶姬': '原叶鲜奶茶，健康又好喝',
-                '古茗': '水果茶专家，清爽解腻',
-                '书亦烧仙草': '经典草本风味，老少皆宜',
-                '茶百道': '性价比高，热门单品多',
-                'CoCo都可': '经典款式，品质稳定',
-                '一点点': '隐藏菜单丰富，可玩性高',
-                '蜜雪冰城': '性价比之王，学生党首选',
-                '茶颜悦色': '茶味浓郁，中国风设计',
-                '乐乐茶': '软欧包+茶饮，颜值担当',
-                '沪上阿姨': '血糯米特色，温暖牌
-            };
-            return reasons[brand] || '适合你的选择';
-        }
-
-        // 开始测试 (已废弃，使用initApp直接初始化)
-        function startQuiz() {
-            showStep(1);
-        }
-
-        // 显示步骤
-        function showStep(step) {
-            document.querySelectorAll('.step-card').forEach(card => card.style.display = 'none');
-            document.getElementById('step' + step).style.display = 'block';
-
-            // 更新进度
-            document.querySelectorAll('.progress-dot').forEach((dot, index) => {
-                dot.classList.remove('active', 'completed');
-                if (index + 1 < step) dot.classList.add('completed');
-                if (index + 1 === step) dot.classList.add('active');
-            });
+        // 渲染选项
+        function renderOptions(step) {
+            const container = document.getElementById('options' + step);
+            container.innerHTML = options[step].map(opt => `
+                <div class="option" data-value="${opt.value}" onclick="selectOption(${step}, this)">
+                    ${opt.label}
+                </div>
+            `).join('');
         }
 
         // 选择选项
         function selectOption(step, element) {
-            // 清除同步骤的其他选中
-            document.querySelectorAll('#step' + step + ' .option-btn').forEach(btn => {
-                btn.classList.remove('selected');
+            // 清除其他选中
+            document.querySelectorAll(`#options${step} .option`).forEach(opt => {
+                opt.classList.remove('selected');
             });
 
             // 选中当前
             element.classList.add('selected');
 
             // 保存数据
-            const value = element.getAttribute('data-value');
-            const stepNames = ['age', 'gender', 'occupation', 'budget'];
-            userData[stepNames[step - 1]] = value;
+            const keys = ['gender', 'age', 'occupation', 'budget'];
+            userData[keys[step - 1]] = element.dataset.value;
 
-            // 启用下一步按钮
-            document.getElementById('btn' + step).disabled = false;
+            //下一步 自动进入
+            setTimeout(() => {
+                if (step < 4) {
+                    goToStep(step + 1);
+                } else {
+                    showResult();
+                }
+            }, 200);
         }
 
-        // 下一步
-        function nextStep(currentStep) {
-            if (currentStep < 4) {
-                showStep(currentStep + 1);
-            }
+        // 进入下一步
+        function goToStep(step) {
+            // 隐藏当前步骤
+            document.getElementById('step' + (step - 1)).style.display = 'none';
+            // 显示下一步
+            document.getElementById('step' + step).style.display = 'block';
+            // 更新进度
+            updateProgress(step);
         }
 
-        // 上一步
-        function goBack(currentStep) {
-            if (currentStep > 1) {
-                showStep(currentStep - 1);
-            }
-            // 如果是第一step stay on step 1
+        // 更新进度
+        function updateProgress(step) {
+            const dots = document.querySelectorAll('.progress-dot');
+            dots.forEach((dot, index) => {
+                if (index < step) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
         }
 
         // 显示结果
         function showResult() {
-            document.querySelectorAll('.step-card').forEach(card => card.style.display = 'none');
-            document.getElementById('progressBar').style.display = 'none';
-            document.getElementById('resultSection').classList.add('show');
+            // 隐藏进度和所有步骤
+            document.getElementById('progress').style.display = 'none';
+            document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
 
-            // 初始化刮刮卡
-            initScratchCard();
+            // 显示加载
+            document.getElementById('loading').classList.add('show');
+
+            // 模拟计算
+            setTimeout(() => {
+                const result = calculateResult();
+                renderResult(result);
+                document.getElementById('loading').classList.remove('show');
+                document.getElementById('result').classList.add('show');
+            }, 800);
         }
 
-        // 初始化刮刮卡
-        function initScratchCard() {
-            const scratchCard = document.getElementById('scratchCard');
-            const scratchCover = document.getElementById('scratchCover');
-            const scratchResult = document.getElementById('scratchResult');
+        // 计算结果
+        function calculateResult() {
+            const genderData = matchData[userData.gender] || matchData['其他'];
+            const ageData = genderData[userData.age] || genderData['小登'];
+            const budgetData = ageData[userData.budget] || ageData['不差钱'];
 
-            // 获取推荐
-            const recommendedBrands = getRecommendations();
-            const mainBrand = recommendedBrands[0];
-            const matchScore = calculateMatchScore();
+            // 返回2-3个推荐
+            return budgetData.slice(0, 3);
+        }
 
-            // 显示结果数据
-            document.getElementById('resultBrand').textContent = mainBrand;
-            document.getElementById('resultDrink').textContent = (drinkRecommendations[mainBrand] || ['经典奶茶']).slice(0, 2).join(' / ');
-            document.getElementById('resultReason').textContent = getReason(mainBrand);
-
-            // 显示更多推荐
-            const resultList = document.getElementById('resultList');
-            resultList.innerHTML = '';
-            recommendedBrands.slice(1).forEach((brand, index) => {
-                const item = document.createElement('div');
-                item.className = 'result-item';
-                item.innerHTML = `
-                    <span class="rank">${index + 2}</span>
-                    <span class="brand">${brand}</span>
-                    <div class="drinks">${(drinkRecommendations[brand] || ['经典奶茶']).slice(0, 2).join(' / ')}</div>
+        // 渲染结果
+        function renderResult(resultBrands) {
+            const container = document.getElementById('resultCards');
+            container.innerHTML = resultBrands.map((brand, index) => {
+                const data = brands[brand] || { drinks: ['经典奶茶'], reason: '适合你的选择' };
+                const rank = index === 0 ? '最佳匹配' : `备选${index}`;
+                return `
+                    <div class="result-card">
+                        <div class="result-rank">${rank}</div>
+                        <div class="result-brand">${brand}</div>
+                        <div class="result-drinks">${data.drinks.join(' / ')}</div>
+                        <div class="result-reason">${data.reason}</div>
+                    </div>
                 `;
-                resultList.appendChild(item);
-            });
-
-            // 刮刮卡效果
-            let scratched = false;
-
-            function handleScratch() {
-                if (scratched) return;
-                scratched = true;
-
-                scratchCover.classList.add('hidden');
-                scratchResult.style.display = 'block';
-
-                // 数字滚动效果
-                let current = 0;
-                const target = matchScore;
-                const duration = 1500;
-                const start = Date.now();
-
-                function animate() {
-                    const elapsed = Date.now() - start;
-                    const progress = Math.min(elapsed / duration, 1);
-
-                    // 缓动函数
-                    const easeOut = 1 - Math.pow(1 - progress, 3);
-                    current = Math.floor(easeOut * target);
-
-                    document.getElementById('matchScore').textContent = current + '%';
-
-                    if (progress < 1) {
-                        requestAnimationFrame(animate);
-                    } else {
-                        // 显示完整结果
-                        document.getElementById('resultDetail').style.display = 'block';
-                        document.getElementById('shareSection').style.display = 'flex';
-                        scratchCard.classList.add('scratched');
-                    }
-                }
-
-                setTimeout(() => {
-                    animate();
-                }, 300);
-            }
-
-            // 点击刮开
-            scratchCard.addEventListener('click', handleScratch);
-
-            // 触摸刮开（移动端）
-            scratchCard.addEventListener('touchstart', handleScratch);
+            }).join('');
         }
 
-        // 截图保存
-        async function screenshot() {
-            const resultSection = document.getElementById('resultSection');
+        // 保存图片
+        async function saveImage() {
+            const result = document.getElementById('result');
 
             try {
-                // 创建截图区域副本
-                const clone = resultSection.cloneNode(true);
-                clone.style.position = 'absolute';
-                clone.style.left = '-9999px';
-                clone.style.background = '#FFFFFF';
-                clone.style.padding = '20px';
-                document.body.appendChild(clone);
-
-                // 隐藏不需要的元素
-                const retryBtn = clone.querySelector('.retry-section');
-                const shareSection = clone.querySelector('.share-section');
-                if (retryBtn) retryBtn.style.display = 'none';
-                if (shareSection) shareSection.style.display = 'none';
-
-                const canvas = await html2canvas(clone, {
-                    backgroundColor: '#FFFFFF',
-                    scale: 2,
-                    useCORS: true
+                const canvas = await html2canvas(result, {
+                    backgroundColor: '#FAFAFA',
+                    scale: 2
                 });
 
-                document.body.removeChild(clone);
-
-                // 下载图片
                 const link = document.createElement('a');
-                link.download = '奶茶匹配结果.png';
+                link.download = '你是什么茶.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
-
-                alert('图片已保存！');
             } catch (e) {
-                console.error('截图失败:', e);
-                alert('截图失败，请重试');
+                console.error(e);
+                alert('保存失败');
             }
         }
 
-        // 复制结果
-        function copyResult() {
-            const recommendedBrands = getRecommendations();
-            const mainBrand = recommendedBrands[0];
-            const matchScore = calculateMatchScore();
-            const drinks = (drinkRecommendations[mainBrand] || ['经典奶茶']).slice(0, 2).join(' / ');
-
-            const text = `🧋 奶茶匹配结果\n\n` +
-                `🎯 匹配度: ${matchScore}%\n` +
-                `📍 推荐品牌: ${mainBrand}\n` +
-                `🥤 推荐饮品: ${drinks}\n` +
-                `💡 ${getReason(mainBrand)}\n\n` +
-                `快来测试你的奶茶缘分吧！`;
-
-            navigator.clipboard.writeText(text).then(() => {
-                alert('结果已复制到剪贴板！');
-            }).catch(() => {
-                alert('复制失败，请重试');
-            });
-        }
-
-        // 重新测试
-        function resetQuiz() {
+        // 重新开始
+        function restart() {
             // 重置数据
-            userData.age = '';
             userData.gender = '';
+            userData.age = '';
             userData.occupation = '';
             userData.budget = '';
 
-            // 清除选择状态
-            document.querySelectorAll('.option-btn').forEach(btn => {
-                btn.classList.remove('selected');
+            // 清除选中状态
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
             });
 
-            // 禁用所有按钮
-            for (let i = 1; i <= 4; i++) {
-                document.getElementById('btn' + i).disabled = true;
-            }
+            // 隐藏结果，显示进度和第一步
+            document.getElementById('result').classList.remove('show');
+            document.getElementById('progress').style.display = 'flex';
+            document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
+            document.getElementById('step1').style.display = 'block';
 
-            // 重置显示
-            document.getElementById('resultSection').classList.remove('show');
-            document.getElementById('scratchCover').classList.remove('hidden');
-            document.getElementById('scratchResult').style.display = 'none';
-            document.getElementById('resultDetail').style.display = 'none';
-            document.getElementById('shareSection').style.display = 'none';
-            document.getElementById('scratchCard').classList.remove('scratched');
-
-            // 重新显示第一个问题
-            showStep(1);
+            // 重置进度
+            updateProgress(1);
         }
     </script>
 </body>
