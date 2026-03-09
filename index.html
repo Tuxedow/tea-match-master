@@ -9,6 +9,14 @@
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
         :root {
+            /* 彩虹配色 */
+            --rainbow-red: #FF0018;
+            --rainbow-orange: #FFA52C;
+            --rainbow-yellow: #FFFF41;
+            --rainbow-green: #008018;
+            --rainbow-blue: #0000F9;
+            --rainbow-purple: #86007D;
+
             --bg: #FAFAFA;
             --bg-card: #FFFFFF;
             --text: #1A1A1A;
@@ -16,38 +24,114 @@
             --text-tertiary: #999999;
             --border: #E5E5E5;
             --border-hover: #CCCCCC;
-            --accent: #D4A574;
-            --accent-light: #F5EDE5;
+            --accent: var(--rainbow-purple);
+            --accent-light: #FFF0F5;
             --shadow: 0 1px 2px rgba(0,0,0,0.04);
             --radius: 6px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* 彩虹渐变背景 */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
+            background: linear-gradient(135deg,
+                rgba(255,0,24,0.05) 0%,
+                rgba(255,165,44,0.05) 20%,
+                rgba(255,255,65,0.05) 40%,
+                rgba(0,128,24,0.05) 60%,
+                rgba(0,0,249,0.05) 80%,
+                rgba(134,0,125,0.05) 100%);
             min-height: 100vh;
         }
 
-        /* 头部 */
         header {
             background: var(--bg-card);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 3px solid;
+            border-image: linear-gradient(90deg,
+                var(--rainbow-red),
+                var(--rainbow-orange),
+                var(--rainbow-yellow),
+                var(--rainbow-green),
+                var(--rainbow-blue),
+                var(--rainbow-purple)) 1;
             padding: 16px 24px;
             text-align: center;
         }
 
         header h1 {
             font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg,
+                var(--rainbow-red),
+                var(--rainbow-orange),
+                var(--rainbow-yellow),
+                var(--rainbow-green),
+                var(--rainbow-blue),
+                var(--rainbow-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .progress-dot.active {
+            background: linear-gradient(90deg,
+                var(--rainbow-red),
+                var(--rainbow-orange),
+                var(--rainbow-yellow),
+                var(--rainbow-green),
+                var(--rainbow-blue),
+                var(--rainbow-purple));
+        }
+
+        .option.selected {
+            background: linear-gradient(135deg,
+                rgba(255,0,24,0.1),
+                rgba(134,0,125,0.1));
+            border-color: var(--rainbow-purple);
+            color: var(--rainbow-purple);
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg,
+                var(--rainbow-red),
+                var(--rainbow-orange),
+                var(--rainbow-yellow),
+                var(--rainbow-green),
+                var(--rainbow-blue),
+                var(--rainbow-purple));
+            color: white;
             font-weight: 600;
-            letter-spacing: 2px;
+        }
+
+        .result-card:first-child {
+            border-color: var(--rainbow-purple);
+            border-width: 3px;
+            background: linear-gradient(135deg,
+                rgba(255,0,24,0.03),
+                rgba(255,165,44,0.03),
+                rgba(0,128,24,0.03),
+                rgba(0,0,249,0.03),
+                rgba(134,0,125,0.03));
+        }
+
+        .result-brand {
+            background: linear-gradient(90deg,
+                var(--rainbow-red),
+                var(--rainbow-orange),
+                var(--rainbow-yellow),
+                var(--rainbow-green),
+                var(--rainbow-blue),
+                var(--rainbow-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         /* 主容器 */
